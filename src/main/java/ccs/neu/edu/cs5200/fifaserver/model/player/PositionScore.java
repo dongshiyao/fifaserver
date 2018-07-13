@@ -1,4 +1,4 @@
-package ccs.neu.edu.cs5200.fifaserver.model.player.nongoalkeeper;
+package ccs.neu.edu.cs5200.fifaserver.model.player;
 
 public class PositionScore {
   private int positionScoreId;
