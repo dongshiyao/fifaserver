@@ -5,7 +5,7 @@ public class Player {
   private String playerName;
   private String nation;
   private String club;
-  private String League;
+  private String league;
   private int skills;
   private int weakFoot;
   private int height;
@@ -21,7 +21,7 @@ public class Player {
     this.playerName = playerName;
     this.nation = nation;
     this.club = club;
-    League = league;
+    this.league = league;
     this.skills = skills;
     this.weakFoot = weakFoot;
     this.height = height;
@@ -64,11 +64,11 @@ public class Player {
   }
 
   public String getLeague() {
-    return League;
+    return league;
   }
 
   public void setLeague(String league) {
-    League = league;
+    this.league = league;
   }
 
   public int getSkills() {

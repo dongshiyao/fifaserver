@@ -8,10 +8,9 @@ public class NonGkStat {
   private int defendingId;
   private int physicalityId;
   private int passingId;
-  private int positionScoreId;
 
   public NonGkStat(int statId, int paceId, int dribblingId, int shootingId, int defendingId,
-                   int physicalityId, int passingId, int positionScoreId) {
+                   int physicalityId, int passingId) {
     this.statId = statId;
     this.paceId = paceId;
     this.dribblingId = dribblingId;
@@ -19,7 +18,6 @@ public class NonGkStat {
     this.defendingId = defendingId;
     this.physicalityId = physicalityId;
     this.passingId = passingId;
-    this.positionScoreId = positionScoreId;
   }
 
   public int getStatId() {
@@ -76,13 +74,5 @@ public class NonGkStat {
 
   public void setPassingId(int passingId) {
     this.passingId = passingId;
-  }
-
-  public int getPositionScoreId() {
-    return positionScoreId;
-  }
-
-  public void setPositionScoreId(int positionScoreId) {
-    this.positionScoreId = positionScoreId;
   }
 }
