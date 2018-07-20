@@ -114,4 +114,22 @@ public class DivingDao {
     }
     return result;
   }
+
+  public int deleteDivingByStatId(int statId) {
+    String deleteDivingStatId = "DELETE FROM Diving WHERE StatID = ?;";
+    Connection connection = null;
+    PreparedStatement preparedStatement = null;
+    int candidateId = 0;
+    try {
+      connection = dbConnectionPool.getConnection();
+      preparedStatement = connection.prepareStatement(deleteDivingStatId);
+      preparedStatement.setInt(1, statId);
+      candidateId = statId;
+    } catch (Exception e) {
+      Logger.getLogger(DivingDao.class.getName()).log(Level.SEVERE, e.getMessage(), e);
+    } finally {
+      dbConnectionPool.closeConnection(connection, preparedStatement);
+    }
+    return candidateId;
+  }
 }
