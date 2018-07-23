@@ -59,26 +59,4 @@ public class DBConnectionPool {
       e.printStackTrace();
     }
   }
-
-  public static void main(String[] args) {
-    DBConnectionPool dbConnectionPool = DBConnectionPool.getInstance();
-    String getAll = "SELECT COUNT(*) FROM Player;";
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    try {
-      connection = dbConnectionPool.getConnection();
-      preparedStatement = connection.prepareStatement(getAll);
-      ResultSet resultSet = preparedStatement.executeQuery();
-      int counter = 0;
-      while (resultSet.next()) {
-        counter += 1;
-        System.out.println(resultSet.getInt(1));
-      }
-      System.out.print(counter);
-    } catch (Exception e) {
-      Logger.getLogger(DBConnectionPool.class.getName()).log(Level.SEVERE, e.getMessage(), e);
-    } finally {
-      dbConnectionPool.closeConnection(connection, preparedStatement);
-    }
-  }
 }

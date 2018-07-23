@@ -1,54 +1,95 @@
 package ccs.neu.edu.cs5200.fifaserver.model.squad;
 
-public class Squad {
-  private int squadId;
-  private int formationId;
-  private int playerId1;
-  private int playerId2;
-  private int playerId3;
-  private int playerId4;
-  private int playerId5;
-  private int playerId6;
-  private int playerId7;
-  private int playerId8;
-  private int playerId9;
-  private int playerId10;
-  private int playerId11;
-  private int Chemistry;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-  public Squad(int squadId, int formationId, int playerId1, int playerId2, int playerId3,
-               int playerId4, int playerId5, int playerId6, int playerId7, int playerId8,
-               int playerId9, int playerId10, int playerId11, int chemistry) {
-    this.squadId = squadId;
-    this.formationId = formationId;
-    this.playerId1 = playerId1;
-    this.playerId2 = playerId2;
-    this.playerId3 = playerId3;
-    this.playerId4 = playerId4;
-    this.playerId5 = playerId5;
-    this.playerId6 = playerId6;
-    this.playerId7 = playerId7;
-    this.playerId8 = playerId8;
-    this.playerId9 = playerId9;
-    this.playerId10 = playerId10;
-    this.playerId11 = playerId11;
-    Chemistry = chemistry;
+@Entity
+@Table(name = "Squad")
+public class Squad {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "SquadID")
+  private long squadId;
+
+  @Column(nullable = false, name = "SquadName")
+  private String squadName;
+
+  @Column(nullable = false, name = "FormationName")
+  private String formationName;
+
+  @Column(name = "PlayerID1")
+  private int playerId1;
+
+  @Column(name = "PlayerID2")
+  private int playerId2;
+
+  @Column(name = "PlayerID3")
+  private int playerId3;
+
+  @Column(name = "PlayerID4")
+  private int playerId4;
+
+  @Column(name = "PlayerID5")
+  private int playerId5;
+
+  @Column(name = "PlayerID6")
+  private int playerId6;
+
+  @Column(name = "PlayerID7")
+  private int playerId7;
+
+  @Column(name = "PlayerID8")
+  private int playerId8;
+
+  @Column(name = "PlayerID9")
+  private int playerId9;
+
+  @Column(name = "PlayerID10")
+  private int playerId10;
+
+  @Column(name = "PlayerID11")
+  private int playerId11;
+
+  @Column(name = "Chemistry")
+  private int chemistry;
+
+  @Column(name = "Rating")
+  private int rating;
+
+  public Squad() {
   }
 
-  public int getSquadId() {
+  public Squad(String squadName, String formationName) {
+    this.squadName = squadName;
+    this.formationName = formationName;
+  }
+
+  public long getSquadId() {
     return squadId;
   }
 
-  public void setSquadId(int squadId) {
+  public void setSquadId(long squadId) {
     this.squadId = squadId;
   }
 
-  public int getFormationId() {
-    return formationId;
+  public String getSquadName() {
+    return squadName;
   }
 
-  public void setFormationId(int formationId) {
-    this.formationId = formationId;
+  public void setSquadName(String squadName) {
+    this.squadName = squadName;
+  }
+
+  public String getFormationName() {
+    return formationName;
+  }
+
+  public void setFormationName(String formationName) {
+    this.formationName = formationName;
   }
 
   public int getPlayerId1() {
@@ -140,10 +181,18 @@ public class Squad {
   }
 
   public int getChemistry() {
-    return Chemistry;
+    return chemistry;
   }
 
   public void setChemistry(int chemistry) {
-    Chemistry = chemistry;
+    this.chemistry = chemistry;
+  }
+
+  public int getRating() {
+    return rating;
+  }
+
+  public void setRating(int rating) {
+    this.rating = rating;
   }
 }

@@ -1,41 +1,77 @@
 package ccs.neu.edu.cs5200.fifaserver.model.player;
 
-public class Player {
-  private int playerId;
-  private String playerName;
-  private String nation;
-  private String club;
-  private String league;
-  private int skills;
-  private int weakFoot;
-  private int height;
-  private int weight;
-  private int age;
-  private int statId;
-  private int positionScoreId;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-  public Player(int playerId, String playerName, String nation, String club, String league,
-                int skills, int weakFoot, int height, int weight, int age, int statId,
-                int positionScoreId) {
+import ccs.neu.edu.cs5200.fifaserver.model.squad.Position;
+
+@Entity
+@Table(name = "Player")
+public class Player {
+  @Id
+  @Column(name = "PlayerID")
+  private long playerId;
+
+  @Column(nullable = false, name = "PlayerName")
+  private String playerName;
+
+  @Column(nullable = false, name = "Nation")
+  private String nation;
+
+  @Column(nullable = false, name = "ClubName")
+  private String clubName;
+
+  @Column(nullable = false, name = "LeagueName")
+  private String leagueName;
+
+  @Column(nullable = false, name = "Photo")
+  private String photo;
+
+  @Column(nullable = false, name = "Skills")
+  private int skills;
+
+  @Column(nullable = false, name = "WeakFoot")
+  private int weakFoot;
+
+  @Column(nullable = false, name = "Height")
+  private int height;
+
+  @Column(nullable = false, name = "Weight")
+  private int weight;
+
+  @Column(nullable = false, name = "Overall")
+  private int overall;
+
+  @Column(nullable = false, name = "Position")
+  private Position position;
+
+  public Player() {
+  }
+
+  public Player(long playerId, String playerName, String nation, String clubName, String leagueName,
+                String photo, int skills, int weakFoot, int height, int weight, int overall,
+                Position position) {
     this.playerId = playerId;
     this.playerName = playerName;
     this.nation = nation;
-    this.club = club;
-    this.league = league;
+    this.clubName = clubName;
+    this.leagueName = leagueName;
+    this.photo = photo;
     this.skills = skills;
     this.weakFoot = weakFoot;
     this.height = height;
     this.weight = weight;
-    this.age = age;
-    this.statId = statId;
-    this.positionScoreId = positionScoreId;
+    this.overall = overall;
+    this.position = position;
   }
 
-  public int getPlayerId() {
+  public long getPlayerId() {
     return playerId;
   }
 
-  public void setPlayerId(int playerId) {
+  public void setPlayerId(long playerId) {
     this.playerId = playerId;
   }
 
@@ -55,20 +91,28 @@ public class Player {
     this.nation = nation;
   }
 
-  public String getClub() {
-    return club;
+  public String getClubName() {
+    return clubName;
   }
 
-  public void setClub(String club) {
-    this.club = club;
+  public void setClubName(String clubName) {
+    this.clubName = clubName;
   }
 
-  public String getLeague() {
-    return league;
+  public String getLeagueName() {
+    return leagueName;
   }
 
-  public void setLeague(String league) {
-    this.league = league;
+  public void setLeagueName(String leagueName) {
+    this.leagueName = leagueName;
+  }
+
+  public String getPhoto() {
+    return photo;
+  }
+
+  public void setPhoto(String photo) {
+    this.photo = photo;
   }
 
   public int getSkills() {
@@ -103,27 +147,19 @@ public class Player {
     this.weight = weight;
   }
 
-  public int getAge() {
-    return age;
+  public int getOverall() {
+    return overall;
   }
 
-  public void setAge(int age) {
-    this.age = age;
+  public void setOverall(int overall) {
+    this.overall = overall;
   }
 
-  public int getStatId() {
-    return statId;
+  public Position getPosition() {
+    return position;
   }
 
-  public void setStatId(int statId) {
-    this.statId = statId;
-  }
-
-  public int getPositionScoreId() {
-    return positionScoreId;
-  }
-
-  public void setPositionScoreId(int positionScoreId) {
-    this.positionScoreId = positionScoreId;
+  public void setPosition(Position position) {
+    this.position = position;
   }
 }

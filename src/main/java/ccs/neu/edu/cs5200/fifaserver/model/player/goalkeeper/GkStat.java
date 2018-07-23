@@ -1,78 +1,102 @@
 package ccs.neu.edu.cs5200.fifaserver.model.player.goalkeeper;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "GKStat")
 public class GkStat {
-  private int statId;
-  private int divingId;
-  private int handlingId;
-  private int reflexesId;
-  private int speedId;
-  private int kickingId;
-  private int positioningId;
+  @Id
+  @Column(name = "PlayerID")
+  private long playerId;
 
-  public GkStat(int statId, int divingId, int handlingId, int reflexesId, int speedId,
-                int kickingId, int positioningId) {
-    this.statId = statId;
-    this.divingId = divingId;
-    this.handlingId = handlingId;
-    this.reflexesId = reflexesId;
-    this.speedId = speedId;
-    this.kickingId = kickingId;
-    this.positioningId = positioningId;
+  @Column(nullable = false, name = "Diving")
+  private int diving;
+
+  @Column(nullable = false, name = "Handling")
+  private int handling;
+
+  @Column(nullable = false, name = "Reflexes")
+  private int reflexes;
+
+  @Column(nullable = false, name = "Speed")
+  private int speed;
+
+  @Column(nullable = false, name = "Kicking")
+  private int kicking;
+
+  @Column(nullable = false, name = "Positioning")
+  private int positioning;
+
+  public GkStat() {
   }
 
-  public int getStatId() {
-    return statId;
+  public GkStat(long playerId, int diving, int handling, int reflexes, int speed, int kicking,
+                int positioning) {
+    this.playerId = playerId;
+    this.diving = diving;
+    this.handling = handling;
+    this.reflexes = reflexes;
+    this.speed = speed;
+    this.kicking = kicking;
+    this.positioning = positioning;
   }
 
-  public void setStatId(int statId) {
-    this.statId = statId;
+  public long getPlayerId() {
+    return playerId;
   }
 
-  public int getDivingId() {
-    return divingId;
+  public void setPlayerId(long playerId) {
+    this.playerId = playerId;
   }
 
-  public void setDivingId(int divingId) {
-    this.divingId = divingId;
+  public int getDiving() {
+    return diving;
   }
 
-  public int getHandlingId() {
-    return handlingId;
+  public void setDiving(int diving) {
+    this.diving = diving;
   }
 
-  public void setHandlingId(int handlingId) {
-    this.handlingId = handlingId;
+  public int getHandling() {
+    return handling;
   }
 
-  public int getReflexesId() {
-    return reflexesId;
+  public void setHandling(int handling) {
+    this.handling = handling;
   }
 
-  public void setReflexesId(int reflexesId) {
-    this.reflexesId = reflexesId;
+  public int getReflexes() {
+    return reflexes;
   }
 
-  public int getSpeedId() {
-    return speedId;
+  public void setReflexes(int reflexes) {
+    this.reflexes = reflexes;
   }
 
-  public void setSpeedId(int speedId) {
-    this.speedId = speedId;
+  public int getSpeed() {
+    return speed;
   }
 
-  public int getKickingId() {
-    return kickingId;
+  public void setSpeed(int speed) {
+    this.speed = speed;
   }
 
-  public void setKickingId(int kickingId) {
-    this.kickingId = kickingId;
+  public int getKicking() {
+    return kicking;
   }
 
-  public int getPositioningId() {
-    return positioningId;
+  public void setKicking(int kicking) {
+    this.kicking = kicking;
   }
 
-  public void setPositioningId(int positioningId) {
-    this.positioningId = positioningId;
+  public int getPositioning() {
+    return positioning;
+  }
+
+  public void setPositioning(int positioning) {
+    this.positioning = positioning;
   }
 }
