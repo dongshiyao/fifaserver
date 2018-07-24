@@ -7,8 +7,8 @@ DROP TABLE IF EXISTS SquadPlayerJunction;
 DROP TABLE IF EXISTS NonGKStat;
 DROP TABLE IF EXISTS GKStat;
 DROP TABLE IF EXISTS Player;
-DROP TABLE IF EXISTS ClubLogo;
-DROP TABLE IF EXISTS NationFlag;
+-- DROP TABLE IF EXISTS ClubLogo;
+-- DROP TABLE IF EXISTS NationFlag;
 DROP TABLE IF EXISTS LeagueLogo;
 DROP TABLE IF EXISTS Squad;
 DROP TABLE IF EXISTS Formation;
@@ -82,17 +82,17 @@ CREATE TABLE Formation (
     ON UPDATE CASCADE ON DELETE SET NULL
 );
 
-CREATE TABLE ClubLogo (
-  ClubName VARCHAR(255),
-  ClubLogo VARCHAR(255),
-  CONSTRAINT pk_ClubLogo_ClubName PRIMARY KEY (ClubName)
-);
-
-CREATE TABLE NationFlag (
-  Nation VARCHAR(255),
-  Flag VARCHAR(255),
-  CONSTRAINT pk_NationFlag_Nation PRIMARY KEY (Nation)
-);
+-- CREATE TABLE ClubLogo (
+--   ClubName VARCHAR(255),
+--   ClubLogo VARCHAR(255),
+--   CONSTRAINT pk_ClubLogo_ClubName PRIMARY KEY (ClubName)
+-- );
+-- 
+-- CREATE TABLE NationFlag (
+--   Nation VARCHAR(255),
+--   Flag VARCHAR(255),
+--   CONSTRAINT pk_NationFlag_Nation PRIMARY KEY (Nation)
+-- );
 
 -- CREATE TABLE LeagueLogo (
 --   LeagueName VARCHAR(255),
@@ -104,8 +104,10 @@ CREATE TABLE Player(
   PlayerID BIGINT,
   PlayerName VARCHAR(255),
   Nation VARCHAR(255),
+  Flag VARCHAR(255),
   Photo VARCHAR(255),
   ClubName VARCHAR(255),
+  ClubLogo VARCHAR(255),
   LeagueName VARCHAR(255),
   Skills INT,
   WeakFoot INT,
@@ -113,13 +115,13 @@ CREATE TABLE Player(
   Weight INT,
   Pos ENUM('RW','RF','RM','RB','ST','CF','CAM','CM','CDM','CB','LW','LM','LB','LF','GK'),
   Overall INT,
-  CONSTRAINT pk_Player_PlayerID PRIMARY KEY (PlayerID),
-  CONSTRAINT fk_Player_ClubName FOREIGN KEY (ClubName)
-    REFERENCES ClubLogo(ClubName)
-    ON UPDATE CASCADE ON DELETE SET NULL,
-  CONSTRAINT fk_Player_Nation FOREIGN KEY (Nation)
-    REFERENCES NationFlag(Nation)
-    ON UPDATE CASCADE ON DELETE SET NULL
+  CONSTRAINT pk_Player_PlayerID PRIMARY KEY (PlayerID)
+  -- CONSTRAINT fk_Player_ClubName FOREIGN KEY (ClubName)
+--     REFERENCES ClubLogo(ClubName)
+--     ON UPDATE CASCADE ON DELETE SET NULL,
+--   CONSTRAINT fk_Player_Nation FOREIGN KEY (Nation)
+--     REFERENCES NationFlag(Nation)
+--     ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE GKStat (
@@ -177,25 +179,25 @@ CREATE TABLE SquadPlayerJunction (
 # Load Data
 ##################################
 
-# Load ClubLogo
-LOAD DATA INFILE '/tmp/club_logo.csv'
-  INTO TABLE ClubLogo
-  FIELDS TERMINATED BY ','
-  LINES TERMINATED BY '\n' 
-  IGNORE 1 LINES
-  (@club,@club_logo)
-  SET ClubName=@club,
-          ClubLogo=@club_logo;
-
-# Load NationFlag
-LOAD DATA INFILE '/tmp/nation_flag.csv'
-  INTO TABLE NationFlag
-  FIELDS TERMINATED BY ','
-  LINES TERMINATED BY '\n' 
-  IGNORE 1 LINES
-  (@nationality,@flag)
-  SET Nation=@nationality,
-          Flag=@flag;
+-- # Load ClubLogo
+-- LOAD DATA INFILE '/tmp/club_logo.csv'
+--   INTO TABLE ClubLogo
+--   FIELDS TERMINATED BY ','
+--   LINES TERMINATED BY '\n' 
+--   IGNORE 1 LINES
+--   (@club,@club_logo)
+--   SET ClubName=@club,
+--           ClubLogo=@club_logo;
+-- 
+-- # Load NationFlag
+-- LOAD DATA INFILE '/tmp/nation_flag.csv'
+--   INTO TABLE NationFlag
+--   FIELDS TERMINATED BY ','
+--   LINES TERMINATED BY '\n' 
+--   IGNORE 1 LINES
+--   (@nationality,@flag)
+--   SET Nation=@nationality,
+--           Flag=@flag;
 
 # Load Player
 LOAD DATA INFILE '/tmp/origin_table.csv'
@@ -207,8 +209,10 @@ LOAD DATA INFILE '/tmp/origin_table.csv'
   SET PlayerID=@ID,
           PlayerName=@name, 
           Nation=@nationality,
+          Flag=@flag,
           Photo=@photo,
           ClubName=@club, 
+          ClubLogo=@club_logo,
           LeagueName=@league,
           Skills=@skill_moves,
           WeakFoot=@weak_foot,
