@@ -18,37 +18,36 @@ DROP TABLE IF EXISTS User;
 
 
 CREATE TABLE User (
-  UserID INT,
   UserName VARCHAR(255),
   Password VARCHAR(255) NOT NULL,
   Email VARCHAR(255),
-  IsAdmin BOOLEAN NOT NULL DEFAULT FALSE,
-  CONSTRAINT pk_User_UserID PRIMARY KEY (UserID)
+  IsPremium BOOLEAN NOT NULL DEFAULT FALSE,
+  CONSTRAINT pk_User_UserName PRIMARY KEY (UserName)
 );
 
 CREATE TABLE Free (
-  UserID INT,
+  UserName VARCHAR(255),
   SearchCredit INT DEFAULT 20,
-  CONSTRAINT pk_Free_UserID
-    PRIMARY KEY (UserID),
-  CONSTRAINT fk_Free_UserID
-    FOREIGN KEY (UserID)
-    REFERENCES User(UserID)
+  CONSTRAINT pk_Free_UserName
+    PRIMARY KEY (UserName),
+  CONSTRAINT fk_Free_UserName
+    FOREIGN KEY (UserName)
+    REFERENCES User(UserName)
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Premium (
-  UserID INT,
+  UserName VARCHAR(255),
   ExpireDate DATE NOT NULL,
   VIPExp DATE NOT NULL,
   VIPLevel INT,
   CreditCardNum BIGINT,
   CreditCardExp DATE NOT NULL,
-  CONSTRAINT pk_Premium_UserID
-    PRIMARY KEY (UserID),
-  CONSTRAINT fk_Premium_UserID
-    FOREIGN KEY (UserID)
-    REFERENCES User(UserID)
+  CONSTRAINT pk_Premium_UserName
+    PRIMARY KEY (UserName),
+  CONSTRAINT fk_Premium_UserName
+    FOREIGN KEY (UserName)
+    REFERENCES User(UserName)
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
@@ -154,11 +153,11 @@ CREATE TABLE NonGKStat (
 
 
 CREATE TABLE UserSquadJunction (
-  UserID INT,
+  UserName VARCHAR(255),
   SquadID INT,
-  CONSTRAINT pk_User_Squad PRIMARY KEY (UserID, SquadID),
-  CONSTRAINT fk_UserSquad_User FOREIGN KEY (UserID) 
-    REFERENCES User (UserID),
+  CONSTRAINT pk_User_Squad PRIMARY KEY (UserName, SquadID),
+  CONSTRAINT fk_UserSquad_User FOREIGN KEY (UserName) 
+    REFERENCES User (UserName),
   CONSTRAINT fk_UseSquad_Squad  FOREIGN KEY (SquadID)
   REFERENCES Squad (SquadID)
 );
