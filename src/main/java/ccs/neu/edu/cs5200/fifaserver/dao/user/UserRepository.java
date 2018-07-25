@@ -8,13 +8,17 @@ import java.util.List;
 
 import ccs.neu.edu.cs5200.fifaserver.domain.user.User;
 
-public interface UserRepository extends CrudRepository<User, Integer> {
-
-  List<User> findByUserName(String userName);
-
-  List<User> removeByUserName(String userName);
+public interface UserRepository extends CrudRepository<User, String> {
 
   @Modifying
   @Query("update User u set u.password = ?1 where u.userName = ?2")
   int setFixedPasswordFor(String passWord, String userName);
+
+  @Modifying
+  @Query("update User u set u.email = ?1 where u.userName = ?2")
+  int setFixedEmailFor(String email, String userName);
+
+  @Modifying
+  @Query("update User u set u.isPremium = ?1 where u.userName = ?2")
+  int setFixedIsPremiumFor(Boolean isPremium, String userName);
 }

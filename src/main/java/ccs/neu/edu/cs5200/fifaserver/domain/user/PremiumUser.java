@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(name = "PremiumUser")
 public class PremiumUser {
   @Id
-  @Column(name = "UserID")
-  private Long userId;
+  @Column(name = "UserName")
+  private String userName;
 
   @Column(nullable = false, name = "VIPExp")
   private Date vipExp;
@@ -29,20 +29,20 @@ public class PremiumUser {
   public PremiumUser() {
   }
 
-  public PremiumUser(Long userId, Date vipExp, Integer vipLevel, Long creditCardNum, Date creditCardExp) {
-    this.userId = userId;
+  public PremiumUser(String userName, Date vipExp, Integer vipLevel, Long creditCardNum, Date creditCardExp) {
+    this.userName = userName;
     this.vipExp = vipExp;
     this.vipLevel = vipLevel;
     this.creditCardNum = creditCardNum;
     this.creditCardExp = creditCardExp;
   }
 
-  public Long getUserId() {
-    return userId;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public Date getVipExp() {

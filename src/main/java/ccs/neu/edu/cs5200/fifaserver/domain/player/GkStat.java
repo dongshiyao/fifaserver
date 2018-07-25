@@ -1,4 +1,4 @@
-package ccs.neu.edu.cs5200.fifaserver.domain.player.gk;
+package ccs.neu.edu.cs5200.fifaserver.domain.player;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @IdClass(value = UserSquadKey.class)
 public class UserSquadJunction {
   @Id
-  @Column(name = "UserID")
-  private Long userId;
+  @Column(name = "UserName")
+  private String userName;
 
   @Id
   @Column(name = "SquadID")
@@ -21,24 +21,24 @@ public class UserSquadJunction {
   public UserSquadJunction() {
   }
 
-  public UserSquadJunction(long userId, long squadId) {
-    this.userId = userId;
+  public UserSquadJunction(String userName, Long squadId) {
+    this.userName = userName;
     this.squadId = squadId;
   }
 
-  public long getUserId() {
-    return userId;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUserId(long userId) {
-    this.userId = userId;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
-  public long getSquadId() {
+  public Long getSquadId() {
     return squadId;
   }
 
-  public void setSquadId(long squadId) {
+  public void setSquadId(Long squadId) {
     this.squadId = squadId;
   }
 }

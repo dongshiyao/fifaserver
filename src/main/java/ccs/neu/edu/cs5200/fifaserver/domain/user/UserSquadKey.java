@@ -3,23 +3,23 @@ package ccs.neu.edu.cs5200.fifaserver.domain.user;
 import java.io.Serializable;
 
 public class UserSquadKey implements Serializable {
-  private Long userId;
+  private String userName;
   private Long squadId;
 
   public UserSquadKey() {
   }
 
-  public UserSquadKey(Long userId, Long squadId) {
-    this.userId = userId;
+  public UserSquadKey(String userName, Long squadId) {
+    this.userName = userName;
     this.squadId = squadId;
   }
 
-  public Long getUserId() {
-    return userId;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public Long getSquadId() {
