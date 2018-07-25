@@ -38,7 +38,6 @@ CREATE TABLE Free (
 
 CREATE TABLE Premium (
   UserName VARCHAR(255),
-  ExpireDate DATE NOT NULL,
   VIPExp DATE NOT NULL,
   VIPLevel INT,
   CreditCardNum BIGINT,
