@@ -2,101 +2,166 @@ package ccs.neu.edu.cs5200.fifaserver.domain.player;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "NonGKStat")
-public class NonGKStat {
-  @Id
-  @Column(name = "PlayerID")
-  private Long playerId;
+public class NonGKStat extends Player {
 
-  @Column(nullable = false, name = "Pace")
-  private Integer pace;
+  @Column(nullable = false, name = "RW")
+  private Integer rw;
 
-  @Column(nullable = false, name = "Dribbling")
-  private Integer dribbling;
+  @Column(nullable = false, name = "RF")
+  private Integer rf;
 
-  @Column(nullable = false, name = "Shooting")
-  private Integer shooting;
+  @Column(nullable = false, name = "RM")
+  private Integer rm;
 
-  @Column(nullable = false, name = "Defending")
-  private Integer defending;
+  @Column(nullable = false, name = "RB")
+  private Integer rb;
 
-  @Column(nullable = false, name = "Physicality")
-  private Integer physicality;
+  @Column(nullable = false, name = "ST")
+  private Integer st;
 
-  @Column(nullable = false, name = "Passing")
-  private Integer passing;
+  @Column(nullable = false, name = "CF")
+  private Integer cf;
+
+  @Column(nullable = false, name = "CAM")
+  private Integer cam;
+
+  @Column(nullable = false, name = "CM")
+  private Integer cm;
+
+  @Column(nullable = false, name = "CDM")
+  private Integer cdm;
+
+  @Column(nullable = false, name = "CB")
+  private Integer cb;
+
+  @Column(nullable = false, name = "LW")
+  private Integer lw;
+
+  @Column(nullable = false, name = "LF")
+  private Integer lf;
+
+  @Column(nullable = false, name = "LM")
+  private Integer lm;
+
+  @Column(nullable = false, name = "LB")
+  private Integer lb;
 
   public NonGKStat() {
   }
 
-  public NonGKStat(Long playerId, Integer pace, Integer dribbling, Integer shooting,
-                   Integer defending, Integer physicality, Integer passing) {
-    this.playerId = playerId;
-    this.pace = pace;
-    this.dribbling = dribbling;
-    this.shooting = shooting;
-    this.defending = defending;
-    this.physicality = physicality;
-    this.passing = passing;
+  public Integer getRw() {
+    return rw;
   }
 
-  public Long getPlayerId() {
-    return playerId;
+  public void setRw(Integer rw) {
+    this.rw = rw;
   }
 
-  public void setPlayerId(Long playerId) {
-    this.playerId = playerId;
+  public Integer getRf() {
+    return rf;
   }
 
-  public Integer getPace() {
-    return pace;
+  public void setRf(Integer rf) {
+    this.rf = rf;
   }
 
-  public void setPace(Integer pace) {
-    this.pace = pace;
+  public Integer getRm() {
+    return rm;
   }
 
-  public Integer getDribbling() {
-    return dribbling;
+  public void setRm(Integer rm) {
+    this.rm = rm;
   }
 
-  public void setDribbling(Integer dribbling) {
-    this.dribbling = dribbling;
+  public Integer getRb() {
+    return rb;
   }
 
-  public Integer getShooting() {
-    return shooting;
+  public void setRb(Integer rb) {
+    this.rb = rb;
   }
 
-  public void setShooting(Integer shooting) {
-    this.shooting = shooting;
+  public Integer getSt() {
+    return st;
   }
 
-  public Integer getDefending() {
-    return defending;
+  public void setSt(Integer st) {
+    this.st = st;
   }
 
-  public void setDefending(Integer defending) {
-    this.defending = defending;
+  public Integer getCf() {
+    return cf;
   }
 
-  public Integer getPhysicality() {
-    return physicality;
+  public void setCf(Integer cf) {
+    this.cf = cf;
   }
 
-  public void setPhysicality(Integer physicality) {
-    this.physicality = physicality;
+  public Integer getCam() {
+    return cam;
   }
 
-  public Integer getPassing() {
-    return passing;
+  public void setCam(Integer cam) {
+    this.cam = cam;
   }
 
-  public void setPassing(Integer passing) {
-    this.passing = passing;
+  public Integer getCm() {
+    return cm;
+  }
+
+  public void setCm(Integer cm) {
+    this.cm = cm;
+  }
+
+  public Integer getCdm() {
+    return cdm;
+  }
+
+  public void setCdm(Integer cdm) {
+    this.cdm = cdm;
+  }
+
+  public Integer getCb() {
+    return cb;
+  }
+
+  public void setCb(Integer cb) {
+    this.cb = cb;
+  }
+
+  public Integer getLw() {
+    return lw;
+  }
+
+  public void setLw(Integer lw) {
+    this.lw = lw;
+  }
+
+  public Integer getLf() {
+    return lf;
+  }
+
+  public void setLf(Integer lf) {
+    this.lf = lf;
+  }
+
+  public Integer getLm() {
+    return lm;
+  }
+
+  public void setLm(Integer lm) {
+    this.lm = lm;
+  }
+
+  public Integer getLb() {
+    return lb;
+  }
+
+  public void setLb(Integer lb) {
+    this.lb = lb;
   }
 }

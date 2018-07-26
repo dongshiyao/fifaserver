@@ -1,6 +1,33 @@
 package ccs.neu.edu.cs5200.fifaserver.domain.squad;
 
 public enum Position {
-  RS, RW, RF, RAM, RCM, RM, RDM, RCB, RB, RWB, ST, LW, CF, CAM, CM, LM, CD, CB, LB, LWB, LS, LF,
-  LAM, LCM, LDM, LCB, GK;
+  RW("RW"),
+  RF("RF"),
+  RM("RM"),
+  RB("RB"),
+  ST("ST"),
+  CF("CF"),
+  CAM("CAM"),
+  CDM("CDM"),
+  CM("CM"),
+  CB("CB"),
+  LW("LW"),
+  LM("LM"),
+  LB("LB"),
+  LF("LF"),
+  GK("GK");
+
+  private String name;
+
+  Position(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }
