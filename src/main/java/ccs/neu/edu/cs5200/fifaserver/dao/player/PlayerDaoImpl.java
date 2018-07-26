@@ -23,7 +23,7 @@ public class PlayerDaoImpl implements PlayerDao {
 
   @Override
   public List<Player> searchByCriteria(SearchCriteria searchCriteria) {
-    return entityManager.createNamedQuery(statementBuilder.buildStatementByCriteria(searchCriteria),
+    return entityManager.createQuery(statementBuilder.buildStatementByCriteria(searchCriteria),
         Player.class).getResultList();
   }
 
