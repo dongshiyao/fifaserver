@@ -3,12 +3,15 @@ package ccs.neu.edu.cs5200.fifaserver.domain.player;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.Position;
 
 @Entity
 @Table(name = "Player")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Player {
   @Id
   @Column(name = "PlayerID")
@@ -53,26 +56,25 @@ public class Player {
   @Column(nullable = false, name = "Position")
   private Position position;
 
-  public Player() {
-  }
+  @Column(nullable = false, name = "Pace")
+  private Integer pace;
 
-  public Player(Long playerId, String playerName, String nation, String flag, String clubName,
-                String clubLogo, String leagueName, String photo, Integer skills, Integer weakFoot,
-                Integer height, Integer weight, Integer overall, Position position) {
-    this.playerId = playerId;
-    this.playerName = playerName;
-    this.nation = nation;
-    this.flag = flag;
-    this.clubName = clubName;
-    this.clubLogo = clubLogo;
-    this.leagueName = leagueName;
-    this.photo = photo;
-    this.skills = skills;
-    this.weakFoot = weakFoot;
-    this.height = height;
-    this.weight = weight;
-    this.overall = overall;
-    this.position = position;
+  @Column(nullable = false, name = "Dribbling")
+  private Integer dribbling;
+
+  @Column(nullable = false, name = "Shooting")
+  private Integer shooting;
+
+  @Column(nullable = false, name = "Defending")
+  private Integer defending;
+
+  @Column(nullable = false, name = "Physicality")
+  private Integer physicality;
+
+  @Column(nullable = false, name = "Passing")
+  private Integer passing;
+
+  public Player() {
   }
 
   public Long getPlayerId() {
@@ -185,5 +187,53 @@ public class Player {
 
   public void setPosition(Position position) {
     this.position = position;
+  }
+
+  public Integer getPace() {
+    return pace;
+  }
+
+  public void setPace(Integer pace) {
+    this.pace = pace;
+  }
+
+  public Integer getDribbling() {
+    return dribbling;
+  }
+
+  public void setDribbling(Integer dribbling) {
+    this.dribbling = dribbling;
+  }
+
+  public Integer getShooting() {
+    return shooting;
+  }
+
+  public void setShooting(Integer shooting) {
+    this.shooting = shooting;
+  }
+
+  public Integer getDefending() {
+    return defending;
+  }
+
+  public void setDefending(Integer defending) {
+    this.defending = defending;
+  }
+
+  public Integer getPhysicality() {
+    return physicality;
+  }
+
+  public void setPhysicality(Integer physicality) {
+    this.physicality = physicality;
+  }
+
+  public Integer getPassing() {
+    return passing;
+  }
+
+  public void setPassing(Integer passing) {
+    this.passing = passing;
   }
 }

@@ -9,8 +9,8 @@ import javax.persistence.Table;
 @Table(name = "FreeUser")
 public class FreeUser {
   @Id
-  @Column(name = "UserID")
-  private Long userId;
+  @Column(name = "UserName")
+  private String userName;
 
   @Column(nullable = false, name = "SearchCredit")
   private Integer searchCredit;
@@ -18,17 +18,17 @@ public class FreeUser {
   public FreeUser() {
   }
 
-  public FreeUser(Long userId, Integer searchCredit) {
-    this.userId = userId;
+  public FreeUser(String userName, Integer searchCredit) {
+    this.userName = userName;
     this.searchCredit = searchCredit;
   }
 
-  public Long getUserId() {
-    return userId;
+  public String getUserName() {
+    return userName;
   }
 
-  public void setUserId(Long userId) {
-    this.userId = userId;
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public Integer getSearchCredit() {

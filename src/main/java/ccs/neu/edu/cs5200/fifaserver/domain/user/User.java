@@ -2,8 +2,6 @@ package ccs.neu.edu.cs5200.fifaserver.domain.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,11 +9,7 @@ import javax.persistence.Table;
 @Table(name = "User")
 public class User {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "UserID")
-  private Long userId;
-
-  @Column(nullable = false, name = "UserName")
+  @Column(name = "UserName")
   private String userName;
 
   @Column(nullable = false, name = "Password")
@@ -24,25 +18,17 @@ public class User {
   @Column(nullable = false, name = "Email")
   private String email;
 
-  @Column(nullable = false, name = "IsAdmin")
-  private Boolean isAdmin;
+  @Column(nullable = false, name = "IsPremium")
+  private Boolean isPremium;
 
   public User() {
   }
 
-  public User(String userName, String password, String email, Boolean isAdmin) {
+  public User(String userName, String password, String email, Boolean isPremium) {
     this.userName = userName;
     this.password = password;
     this.email = email;
-    this.isAdmin = isAdmin;
-  }
-
-  public Long getUserId() {
-    return userId;
-  }
-
-  public void setUserId(Long userId) {
-    this.userId = userId;
+    this.isPremium = isPremium;
   }
 
   public String getUserName() {
@@ -69,11 +55,11 @@ public class User {
     this.email = email;
   }
 
-  public Boolean getAdmin() {
-    return isAdmin;
+  public Boolean getIsPremium() {
+    return isPremium;
   }
 
-  public void setAdmin(Boolean admin) {
-    isAdmin = admin;
+  public void setIsPremium(Boolean premium) {
+    isPremium = premium;
   }
 }
