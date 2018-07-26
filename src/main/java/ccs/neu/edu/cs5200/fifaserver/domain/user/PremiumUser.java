@@ -11,19 +11,19 @@ import javax.persistence.Table;
 @Table(name = "PremiumUser")
 public class PremiumUser {
   @Id
-  @Column(name = "UserName")
+  @Column(name = "user_name")
   private String userName;
 
-  @Column(nullable = false, name = "VIPExp")
+  @Column(nullable = false, name = "vip_exp")
   private Date vipExp;
 
-  @Column(nullable = false, name = "VIPLevel")
+  @Column(nullable = false, name = "vip_level")
   private Integer vipLevel;
 
-  @Column(nullable = false, name = "CreditCardNum")
+  @Column(nullable = false, name = "credit_card_num")
   private Long creditCardNum;
 
-  @Column(nullable = false, name = "CreditCardExp")
+  @Column(nullable = false, name = "credit_card_exp")
   private Date creditCardExp;
 
   public PremiumUser() {

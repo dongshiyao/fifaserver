@@ -11,11 +11,11 @@ import javax.persistence.Table;
 @IdClass(value = UserSquadKey.class)
 public class UserSquadJunction {
   @Id
-  @Column(name = "UserName")
+  @Column(name = "user_name")
   private String userName;
 
   @Id
-  @Column(name = "SquadID")
+  @Column(name = "squad_id")
   private Long squadId;
 
   public UserSquadJunction() {

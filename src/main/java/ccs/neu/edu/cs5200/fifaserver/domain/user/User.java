@@ -9,16 +9,16 @@ import javax.persistence.Table;
 @Table(name = "User")
 public class User {
   @Id
-  @Column(name = "UserName")
+  @Column(name = "user_name")
   private String userName;
 
-  @Column(nullable = false, name = "Password")
+  @Column(nullable = false, name = "password")
   private String password;
 
-  @Column(nullable = false, name = "Email")
+  @Column(nullable = false, name = "email")
   private String email;
 
-  @Column(nullable = false, name = "IsPremium")
+  @Column(nullable = false, name = "is_premium")
   private Boolean isPremium;
 
   public User() {

@@ -9,10 +9,10 @@ import javax.persistence.Table;
 @Table(name = "FreeUser")
 public class FreeUser {
   @Id
-  @Column(name = "UserName")
+  @Column(name = "user_name")
   private String userName;
 
-  @Column(nullable = false, name = "SearchCredit")
+  @Column(nullable = false, name = "search_credit")
   private Integer searchCredit;
 
   public FreeUser() {

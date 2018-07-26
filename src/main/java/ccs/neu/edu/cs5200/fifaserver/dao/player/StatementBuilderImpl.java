@@ -6,20 +6,24 @@ import ccs.neu.edu.cs5200.fifaserver.domain.player.SearchCriteria;
 
 @Component("statementBuilder")
 public class StatementBuilderImpl implements StatementBuilder {
-  private static final String START = "SELECT * FROM Player";
-  private static final String SQL_SEARCH_NAME = "SELECT * FROM Player WHERE LOWER(PlayerName) LIKE '%%%s%%' ORDER BY Overall DESC;";
-  private static final String SQL_SEARCH_NATION_START_WITH = "SELECT Nation FROM Player WHERE LOWER(Nation) REGEXP '^[%c-%c].*$' GROUP BY Nation ORDER BY Nation;";
-  private static final String SQL_SEARCH_LEAGUE_START_WITH = "SELECT League FROM Player WHERE LOWER(League) REGEXP '^[%c-%c].*$' GROUP BY League ORDER BY League;";
-  private static final String SQL_SEARCH_CLUB_BY_LEAGUE = "SELECT Club FROM Player WHERE League = '%s' GROUP BY Club ORDER BY Club;";
-  private static final String CLAUSE_NATION = "Nation = '%s'";
-  private static final String CLAUSE_LEAGUE = "League = '%s'";
-  private static final String CLAUSE_CLUB = "Club = '%s'";
-  private static final String CLAUSE_POSITION = "Position = '%s'";
+  private static final String START = "SELECT c FROM Player c";
+  private static final String SQL_SEARCH_NAME = "SELECT c FROM Player c WHERE LOWER(player_name) LIKE '%%%s%%' ORDER BY Overall DESC";
+  private static final String SQL_SEARCH_NATION_START_WITH = "SELECT nation FROM Player WHERE %s GROUP BY nation ORDER BY nation";
+  private static final String SQL_SEARCH_LEAGUE_START_WITH = "SELECT league FROM Player WHERE %s GROUP BY league ORDER BY league";
+  private static final String SQL_SEARCH_CLUB_BY_LEAGUE = "SELECT club FROM Player WHERE league = '%s' GROUP BY club ORDER BY club";
+  private static final String CLAUSE_NATION_LIKE = "LOWER(nation) LIKE '%c%%'";
+  private static final String CLAUSE_LEAGUE_LIKE = "LOWER(league) LIKE '%c%%'";
+  private static final String CLAUSE_NATION = "nation = '%s'";
+  private static final String CLAUSE_LEAGUE = "league = '%s'";
+  private static final String CLAUSE_CLUB = "club = '%s'";
+  private static final String CLAUSE_POSITION = "pos = '%s'";
   private static final String ORDER_BY = "ORDER BY %s DESC";
+  private static final String OR = "OR";
   private static final String AND = "AND";
   private static final String WHERE = "WHERE";
-  private static final String TERMINATE = ";";
   private static final String SP = " ";
+  private static final Character CHAR_A = 'a';
+  private static final Character CHAR_Z = 'z';
 
   @Override
   public String buildStatementByPlayerName(String playerName) {
@@ -60,30 +64,62 @@ public class StatementBuilderImpl implements StatementBuilder {
     if (searchCriteria.getSortCriteria() != null) {
       result = result + SP + String.format(ORDER_BY, searchCriteria.getSortCriteria().getName());
     }
-    result = result + TERMINATE;
     return result;
   }
 
   @Override
   public String buildStatementNationByFirstLetterInRange(Character start, Character end) {
-    if (Character.isLetter(start)&& Character.isLetter(end)) {
-      return String.format(SQL_SEARCH_NATION_START_WITH, Character.toLowerCase(start), Character.toLowerCase(end));
+    start = Character.toLowerCase(start);
+    end = Character.toLowerCase(end);
+    if (Character.isLetter(start)&& Character.isLetter(end) && start < end) {
+      return String.format(SQL_SEARCH_NATION_START_WITH, helperBuildNationLike(start, end));
     } else {
-      return String.format(SQL_SEARCH_NATION_START_WITH, 'a', 'z');
+      return String.format(SQL_SEARCH_NATION_START_WITH, helperBuildNationLike(CHAR_A, CHAR_Z));
     }
   }
 
   @Override
   public String buildStatementLeagueByFirstLetterInRange(Character start, Character end) {
-    if (Character.isLetter(start)&& Character.isLetter(end)) {
-      return String.format(SQL_SEARCH_LEAGUE_START_WITH, Character.toLowerCase(start), Character.toLowerCase(end));
+    start = Character.toLowerCase(start);
+    end = Character.toLowerCase(end);
+    if (Character.isLetter(start)&& Character.isLetter(end) && start < end) {
+      return String.format(SQL_SEARCH_LEAGUE_START_WITH, helperBuildLeagueLike(start, end));
     } else {
-      return String.format(SQL_SEARCH_LEAGUE_START_WITH, 'a', 'z');
+      return String.format(SQL_SEARCH_LEAGUE_START_WITH, helperBuildLeagueLike(CHAR_A, CHAR_Z));
     }
   }
 
   @Override
   public String buildStatementClubByLeague(String leagueName) {
     return String.format(SQL_SEARCH_CLUB_BY_LEAGUE, leagueName);
+  }
+
+  private String helperBuildNationLike(Character start, Character end) {
+    StringBuilder result = new StringBuilder();
+    for (Character c = start; c <= end; c++) {
+      if (c.equals(start)) {
+        result.append(String.format(CLAUSE_NATION_LIKE, c));
+      } else {
+        result.append(SP).append(OR).append(SP).append(String.format(CLAUSE_NATION_LIKE, c));
+      }
+    }
+    return result.toString();
+  }
+
+  private String helperBuildLeagueLike(Character start, Character end) {
+    StringBuilder result = new StringBuilder();
+    for (Character c = start; c <= end; c++) {
+      if (c.equals(start)) {
+        result.append(String.format(CLAUSE_LEAGUE_LIKE, c));
+      } else {
+        result.append(SP).append(OR).append(SP).append(String.format(CLAUSE_LEAGUE_LIKE, c));
+      }
+    }
+    return result.toString();
+  }
+
+  public static void main(String[] args) {
+    System.out.println(new StatementBuilderImpl().buildStatementNationByFirstLetterInRange('a', 'b'));
+    System.out.println(new StatementBuilderImpl().buildStatementLeagueByFirstLetterInRange('a', 'c'));
   }
 }

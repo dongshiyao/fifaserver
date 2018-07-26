@@ -50,7 +50,7 @@ public class PlayerController {
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/searchClubByLeagueName")
-  public List<String> searchClubByLeagueName(@RequestParam(name = "league_name") String leagueName) {
+  public List<String> searchClubByLeague(@RequestParam(name = "league") String leagueName) {
     return playerService.displayClubByLeagueName(leagueName);
   }
 

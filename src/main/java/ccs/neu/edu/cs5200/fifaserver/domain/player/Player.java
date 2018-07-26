@@ -2,6 +2,8 @@ package ccs.neu.edu.cs5200.fifaserver.domain.player;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -14,64 +16,65 @@ import ccs.neu.edu.cs5200.fifaserver.domain.squad.Position;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Player {
   @Id
-  @Column(name = "PlayerID")
+  @Column(name = "player_id")
   private Long playerId;
 
-  @Column(nullable = false, name = "PlayerName")
+  @Column(nullable = false, name = "player_name")
   private String playerName;
 
-  @Column(nullable = false, name = "Nation")
+  @Column(nullable = false, name = "nation")
   private String nation;
 
-  @Column(nullable = false, name = "Flag")
+  @Column(nullable = false, name = "flag")
   private String flag;
 
-  @Column(nullable = false, name = "ClubName")
-  private String clubName;
+  @Column(nullable = false, name = "club")
+  private String club;
 
-  @Column(nullable = false, name = "ClubLogo")
+  @Column(nullable = false, name = "club_logo")
   private String clubLogo;
 
-  @Column(nullable = false, name = "LeagueName")
-  private String leagueName;
+  @Column(nullable = false, name = "league")
+  private String league;
 
-  @Column(nullable = false, name = "Photo")
+  @Column(nullable = false, name = "photo")
   private String photo;
 
-  @Column(nullable = false, name = "Skills")
+  @Column(nullable = false, name = "skills")
   private Integer skills;
 
-  @Column(nullable = false, name = "WeakFoot")
+  @Column(nullable = false, name = "weak_foot")
   private Integer weakFoot;
 
-  @Column(nullable = false, name = "Height")
+  @Column(nullable = false, name = "height")
   private Integer height;
 
-  @Column(nullable = false, name = "Weight")
+  @Column(nullable = false, name = "weight")
   private Integer weight;
 
-  @Column(nullable = false, name = "Overall")
+  @Column(nullable = false, name = "overall")
   private Integer overall;
 
-  @Column(nullable = false, name = "Position")
+  @Column(nullable = false, name = "pos")
+  @Enumerated(EnumType.STRING)
   private Position position;
 
-  @Column(nullable = false, name = "Pace")
+  @Column(nullable = false, name = "pace")
   private Integer pace;
 
-  @Column(nullable = false, name = "Dribbling")
+  @Column(nullable = false, name = "dribbling")
   private Integer dribbling;
 
-  @Column(nullable = false, name = "Shooting")
+  @Column(nullable = false, name = "shooting")
   private Integer shooting;
 
-  @Column(nullable = false, name = "Defending")
+  @Column(nullable = false, name = "defending")
   private Integer defending;
 
-  @Column(nullable = false, name = "Physicality")
+  @Column(nullable = false, name = "physicality")
   private Integer physicality;
 
-  @Column(nullable = false, name = "Passing")
+  @Column(nullable = false, name = "passing")
   private Integer passing;
 
   public Player() {
@@ -109,12 +112,12 @@ public class Player {
     this.flag = flag;
   }
 
-  public String getClubName() {
-    return clubName;
+  public String getClub() {
+    return club;
   }
 
-  public void setClubName(String clubName) {
-    this.clubName = clubName;
+  public void setClub(String club) {
+    this.club = club;
   }
 
   public String getClubLogo() {
@@ -125,12 +128,12 @@ public class Player {
     this.clubLogo = clubLogo;
   }
 
-  public String getLeagueName() {
-    return leagueName;
+  public String getLeague() {
+    return league;
   }
 
-  public void setLeagueName(String leagueName) {
-    this.leagueName = leagueName;
+  public void setLeague(String league) {
+    this.league = league;
   }
 
   public String getPhoto() {

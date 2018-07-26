@@ -8,46 +8,46 @@ import javax.persistence.Table;
 @Table(name = "NonGKStat")
 public class NonGKStat extends Player {
 
-  @Column(nullable = false, name = "RW")
+  @Column(nullable = false, name = "rw")
   private Integer rw;
 
-  @Column(nullable = false, name = "RF")
+  @Column(nullable = false, name = "rf")
   private Integer rf;
 
-  @Column(nullable = false, name = "RM")
+  @Column(nullable = false, name = "rm")
   private Integer rm;
 
-  @Column(nullable = false, name = "RB")
+  @Column(nullable = false, name = "rb")
   private Integer rb;
 
-  @Column(nullable = false, name = "ST")
+  @Column(nullable = false, name = "st")
   private Integer st;
 
-  @Column(nullable = false, name = "CF")
+  @Column(nullable = false, name = "cf")
   private Integer cf;
 
-  @Column(nullable = false, name = "CAM")
+  @Column(nullable = false, name = "cam")
   private Integer cam;
 
-  @Column(nullable = false, name = "CM")
+  @Column(nullable = false, name = "cm")
   private Integer cm;
 
-  @Column(nullable = false, name = "CDM")
+  @Column(nullable = false, name = "cdm")
   private Integer cdm;
 
-  @Column(nullable = false, name = "CB")
+  @Column(nullable = false, name = "cb")
   private Integer cb;
 
-  @Column(nullable = false, name = "LW")
+  @Column(nullable = false, name = "lw")
   private Integer lw;
 
-  @Column(nullable = false, name = "LF")
+  @Column(nullable = false, name = "lf")
   private Integer lf;
 
-  @Column(nullable = false, name = "LM")
+  @Column(nullable = false, name = "lm")
   private Integer lm;
 
-  @Column(nullable = false, name = "LB")
+  @Column(nullable = false, name = "lb")
   private Integer lb;
 
   public NonGKStat() {

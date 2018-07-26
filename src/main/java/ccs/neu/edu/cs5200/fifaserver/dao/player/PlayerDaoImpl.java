@@ -49,5 +49,6 @@ public class PlayerDaoImpl implements PlayerDao {
   public List<String> searchClubByLeague(String leagueName) {
     return entityManager.createQuery(statementBuilder.buildStatementClubByLeague(leagueName),
         String.class).getResultList();
+
   }
 }

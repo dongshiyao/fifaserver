@@ -12,19 +12,19 @@ import javax.persistence.Table;
 public class Squad {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "SquadID")
+  @Column(name = "squad_id")
   private Long squadId;
 
-  @Column(nullable = false, name = "SquadName")
+  @Column(nullable = false, name = "squad_name")
   private String squadName;
 
-  @Column(nullable = false, name = "FormationName")
+  @Column(nullable = false, name = "formation_name")
   private String formationName;
 
-  @Column(name = "Chemistry")
+  @Column(name = "chemistry")
   private Integer chemistry;
 
-  @Column(name = "Rating")
+  @Column(name = "rating")
   private Integer rating;
 
   public Squad() {

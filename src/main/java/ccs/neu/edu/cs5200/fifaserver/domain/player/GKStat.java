@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Table(name = "GKStat")
 public class GKStat extends Player {
 
-  @Column(nullable = false, name = "GK")
+  @Column(nullable = false, name = "gk")
   private Integer gk;
 
   public GKStat() {

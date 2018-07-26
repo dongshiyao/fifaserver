@@ -9,43 +9,43 @@ import javax.persistence.Table;
 @Table(name = "Formation")
 public class Formation {
   @Id
-  @Column(nullable = false, name = "FormationName")
+  @Column(nullable = false, name = "formation_name")
   private String formationName;
 
-  @Column(nullable = false, name = "FormationPhoto")
+  @Column(nullable = false, name = "formation_photo")
   private String formationPhoto;
 
-  @Column(nullable = false, name = "Pos1")
+  @Column(nullable = false, name = "pos1")
   private Position pos1;
 
-  @Column(nullable = false, name = "Pos2")
+  @Column(nullable = false, name = "pos2")
   private Position pos2;
 
-  @Column(nullable = false, name = "Pos3")
+  @Column(nullable = false, name = "pos3")
   private Position pos3;
 
-  @Column(nullable = false, name = "Pos4")
+  @Column(nullable = false, name = "pos4")
   private Position pos4;
 
-  @Column(nullable = false, name = "Pos5")
+  @Column(nullable = false, name = "pos5")
   private Position pos5;
 
-  @Column(nullable = false, name = "Pos6")
+  @Column(nullable = false, name = "pos6")
   private Position pos6;
 
-  @Column(nullable = false, name = "Pos7")
+  @Column(nullable = false, name = "pos7")
   private Position pos7;
 
-  @Column(nullable = false, name = "Pos8")
+  @Column(nullable = false, name = "pos8")
   private Position pos8;
 
-  @Column(nullable = false, name = "Pos9")
+  @Column(nullable = false, name = "pos9")
   private Position pos9;
 
-  @Column(nullable = false, name = "Pos10")
+  @Column(nullable = false, name = "pos10")
   private Position pos10;
 
-  @Column(nullable = false, name = "Pos11")
+  @Column(nullable = false, name = "pos11")
   private Position pos11;
 
   public Formation() {
