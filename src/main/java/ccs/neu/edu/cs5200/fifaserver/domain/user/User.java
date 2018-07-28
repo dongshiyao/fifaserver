@@ -3,10 +3,13 @@ package ccs.neu.edu.cs5200.fifaserver.domain.user;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "User")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User {
   @Id
   @Column(name = "user_name")
@@ -22,13 +25,6 @@ public class User {
   private Boolean isPremium;
 
   public User() {
-  }
-
-  public User(String userName, String password, String email, Boolean isPremium) {
-    this.userName = userName;
-    this.password = password;
-    this.email = email;
-    this.isPremium = isPremium;
   }
 
   public String getUserName() {

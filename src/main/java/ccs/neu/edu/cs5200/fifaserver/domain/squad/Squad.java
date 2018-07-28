@@ -33,6 +33,8 @@ public class Squad {
   public Squad(String squadName, String formationName) {
     this.squadName = squadName;
     this.formationName = formationName;
+    this.chemistry = 0;
+    this.rating = 0;
   }
 
   public Long getSquadId() {

@@ -117,9 +117,4 @@ public class StatementBuilderImpl implements StatementBuilder {
     }
     return result.toString();
   }
-
-  public static void main(String[] args) {
-    System.out.println(new StatementBuilderImpl().buildStatementNationByFirstLetterInRange('a', 'b'));
-    System.out.println(new StatementBuilderImpl().buildStatementLeagueByFirstLetterInRange('a', 'c'));
-  }
 }

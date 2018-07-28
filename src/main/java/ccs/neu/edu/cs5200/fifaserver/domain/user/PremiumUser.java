@@ -10,9 +10,9 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "PremiumUser")
 public class PremiumUser {
-  @Id
-  @Column(name = "user_name")
-  private String userName;
+//  @Id
+//  @Column(name = "user_name")
+//  private String userName;
 
   @Column(nullable = false, name = "vip_exp")
   private Date vipExp;
@@ -27,22 +27,6 @@ public class PremiumUser {
   private Date creditCardExp;
 
   public PremiumUser() {
-  }
-
-  public PremiumUser(String userName, Date vipExp, Integer vipLevel, Long creditCardNum, Date creditCardExp) {
-    this.userName = userName;
-    this.vipExp = vipExp;
-    this.vipLevel = vipLevel;
-    this.creditCardNum = creditCardNum;
-    this.creditCardExp = creditCardExp;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 
   public Date getVipExp() {

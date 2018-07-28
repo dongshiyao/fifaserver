@@ -24,7 +24,7 @@ public class PlayerController {
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/hello")
-  public String sayHello(@RequestParam(name = "test", defaultValue = "null") Character msg) {
+  public String sayHello(@RequestParam(name = "test", defaultValue = "n") Character msg) {
     if (msg.equals('n')) {
       return "Yes, hello from player";
     } else {
@@ -61,5 +61,10 @@ public class PlayerController {
                                              @RequestParam(name = "position", defaultValue = NULL_INPUT) String position,
                                              @RequestParam(name = "sortCriteria", defaultValue = NULL_INPUT) String sortCriteria) {
     return playerService.searchByPlayerCriteria(nation, league, club, position, sortCriteria);
+  }
+
+  @RequestMapping(method = RequestMethod.GET, value = "/searchPlayerById")
+  public Player searchPlayerById(@RequestParam(name = "player_id", defaultValue = "1") Long playerId) {
+    return playerService.searchByPlayerId(playerId);
   }
 }

@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 import ccs.neu.edu.cs5200.fifaserver.dao.player.PlayerDao;
 import ccs.neu.edu.cs5200.fifaserver.dao.player.PlayerRepository;
@@ -20,9 +20,11 @@ public class PlayerServiceImpl implements PlayerService {
   private static final String NULL_INPUT = "NULL_INPUT";
 
   private final PlayerDao playerDao;
+  private final PlayerRepository playerRepository;
 
-  public PlayerServiceImpl(PlayerDao playerDao) {
+  public PlayerServiceImpl(PlayerDao playerDao, PlayerRepository playerRepository) {
     this.playerDao = playerDao;
+    this.playerRepository = playerRepository;
   }
 
   @Override
@@ -65,5 +67,11 @@ public class PlayerServiceImpl implements PlayerService {
   @Override
   public List<String> displayClubByLeagueName(String leagueName) {
     return playerDao.searchClubByLeague(leagueName);
+  }
+
+  @Override
+  public Player searchByPlayerId(Long playerId) {
+    Optional<Player> playerOptional = playerRepository.findById(playerId);
+    return playerOptional.orElse(null);
   }
 }

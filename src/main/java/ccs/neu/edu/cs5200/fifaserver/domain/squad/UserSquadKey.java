@@ -1,4 +1,4 @@
-package ccs.neu.edu.cs5200.fifaserver.domain.user;
+package ccs.neu.edu.cs5200.fifaserver.domain.squad;
 
 import java.io.Serializable;
 
