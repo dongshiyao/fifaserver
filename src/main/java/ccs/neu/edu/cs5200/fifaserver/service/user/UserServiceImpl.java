@@ -119,7 +119,6 @@ public class UserServiceImpl implements UserService {
       premiumUser = new PremiumUser(user.getUserName(), user.getPassword(), user.getEmail(),
           vipExp, DEFAULT_VIP_LEVEL, creditCardNum, creditCardExp);
       premiumUserRepository.save(premiumUser);
-//      userRepository.setFixedIsPremiumFor(true, userName);
       return String.format("User[%s] Upgrade to Premium User with VIP Level %d Valid for %d year",
           userName, DEFAULT_VIP_LEVEL, DEFAULT_VIP_DURATION);
     }
@@ -139,7 +138,6 @@ public class UserServiceImpl implements UserService {
       return String.format("User[%s] is already free user, cannot be downgraded anymore!", userName);
     } else {
       freeUserRepository.save(new FreeUser(user.getUserName(), user.getPassword(), user.getEmail(), DEFAULT_SEARCH_CREDIT));
-//      userRepository.setFixedIsPremiumFor(false, userName);
       return String.format("User[%s] has been downgraded to free user!", userName);
     }
   }
