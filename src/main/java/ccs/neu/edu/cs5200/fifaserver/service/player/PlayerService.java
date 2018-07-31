@@ -50,4 +50,12 @@ public interface PlayerService {
    * @return list of club names
    */
   List<String> displayClubByLeagueName(String leagueName);
+
+  /**
+   * Search player by id.
+   *
+   * @param playerId the player id
+   * @return player
+   */
+  Player searchByPlayerId(Long playerId);
 }

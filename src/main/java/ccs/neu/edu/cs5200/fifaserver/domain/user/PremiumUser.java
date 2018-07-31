@@ -9,10 +9,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "PremiumUser")
-public class PremiumUser {
-  @Id
-  @Column(name = "user_name")
-  private String userName;
+public class PremiumUser extends User {
+//  @Id
+//  @Column(name = "user_name")
+//  private String userName;
 
   @Column(nullable = false, name = "vip_exp")
   private Date vipExp;
@@ -29,20 +29,12 @@ public class PremiumUser {
   public PremiumUser() {
   }
 
-  public PremiumUser(String userName, Date vipExp, Integer vipLevel, Long creditCardNum, Date creditCardExp) {
-    this.userName = userName;
+  public PremiumUser(String userName, String password, String email, Date vipExp, Integer vipLevel, Long creditCardNum, Date creditCardExp) {
+    super(userName, password, email, true);
     this.vipExp = vipExp;
     this.vipLevel = vipLevel;
     this.creditCardNum = creditCardNum;
     this.creditCardExp = creditCardExp;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 
   public Date getVipExp() {

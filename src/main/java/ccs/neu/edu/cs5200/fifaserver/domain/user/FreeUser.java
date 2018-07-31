@@ -7,10 +7,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "FreeUser")
-public class FreeUser {
-  @Id
-  @Column(name = "user_name")
-  private String userName;
+public class FreeUser extends User{
+//  @Id
+//  @Column(name = "user_name")
+//  private String userName;
 
   @Column(nullable = false, name = "search_credit")
   private Integer searchCredit;
@@ -18,17 +18,9 @@ public class FreeUser {
   public FreeUser() {
   }
 
-  public FreeUser(String userName, Integer searchCredit) {
-    this.userName = userName;
+  public FreeUser(String userName, String password, String email, Integer searchCredit) {
+    super(userName, password, email, false);
     this.searchCredit = searchCredit;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 
   public Integer getSearchCredit() {
