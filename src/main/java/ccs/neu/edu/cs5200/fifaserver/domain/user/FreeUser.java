@@ -6,13 +6,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "FreeUser")
+@Table(name = "Free")
 public class FreeUser extends User{
 //  @Id
 //  @Column(name = "user_name")
 //  private String userName;
 
-  @Column(nullable = false, name = "search_credit")
+  @Column(nullable = false, name = "searchcredit")
   private Integer searchCredit;
 
   public FreeUser() {

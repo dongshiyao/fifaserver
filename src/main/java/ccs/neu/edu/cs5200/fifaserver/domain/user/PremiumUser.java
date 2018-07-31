@@ -8,22 +8,22 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PremiumUser")
+@Table(name = "Premium")
 public class PremiumUser extends User {
 //  @Id
 //  @Column(name = "user_name")
 //  private String userName;
 
-  @Column(nullable = false, name = "vip_exp")
+  @Column(nullable = false, name = "vipexp")
   private Date vipExp;
 
-  @Column(nullable = false, name = "vip_level")
+  @Column(nullable = false, name = "viplevel")
   private Integer vipLevel;
 
-  @Column(nullable = false, name = "credit_card_num")
+  @Column(nullable = false, name = "creditcardnum")
   private Long creditCardNum;
 
-  @Column(nullable = false, name = "credit_card_exp")
+  @Column(nullable = false, name = "creditcardexp")
   private Date creditCardExp;
 
   public PremiumUser() {

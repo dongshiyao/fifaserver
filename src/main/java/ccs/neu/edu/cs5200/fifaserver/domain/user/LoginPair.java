@@ -4,6 +4,9 @@ public class LoginPair {
   private String userName;
   private String password;
 
+  public LoginPair() {
+  }
+
   public LoginPair(String userName, String password) {
     this.userName = userName;
     this.password = password;

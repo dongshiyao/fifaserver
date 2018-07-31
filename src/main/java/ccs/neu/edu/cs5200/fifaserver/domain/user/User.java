@@ -12,7 +12,7 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
   @Id
-  @Column(name = "user_name")
+  @Column(name = "username")
   private String userName;
 
   @Column(nullable = false, name = "password")
@@ -21,7 +21,7 @@ public class User {
   @Column(nullable = false, name = "email")
   private String email;
 
-  @Column(nullable = false, name = "is_premium")
+  @Column(nullable = false, name = "ispremium")
   private Boolean isPremium;
 
   public User() {

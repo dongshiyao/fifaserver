@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import ccs.neu.edu.cs5200.fifaserver.domain.player.CreditCard;
 import ccs.neu.edu.cs5200.fifaserver.domain.user.FreeUser;
 import ccs.neu.edu.cs5200.fifaserver.domain.user.LoginPair;
+import ccs.neu.edu.cs5200.fifaserver.domain.user.PremInput;
 import ccs.neu.edu.cs5200.fifaserver.domain.user.PremiumUser;
+import ccs.neu.edu.cs5200.fifaserver.domain.user.UpgradeInput;
 import ccs.neu.edu.cs5200.fifaserver.domain.user.User;
 import ccs.neu.edu.cs5200.fifaserver.service.user.UserService;
 
@@ -48,10 +49,10 @@ public class UserController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/createPremiumUser")
-  public ResponseEntity<String> createPremiumUser(@RequestBody User user, @RequestBody CreditCard creditCard) {
+  public ResponseEntity<String> createPremiumUser(@RequestBody PremInput premInput) {
     try {
-      String result = userService.createPremiumUser(user, creditCard.getCreditCardNum(),
-          creditCard.getCreditCardExp());
+      String result = userService.createPremiumUser(premInput.buildUser(), premInput.getCreditCardNum(),
+          premInput.getCreditCardExp());
       return ResponseEntity.ok(result);
     } catch (IllegalArgumentException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
@@ -69,11 +70,10 @@ public class UserController {
   }
 
   @RequestMapping(method = RequestMethod.PUT, value = "/upgradeUser")
-  public ResponseEntity<String> upgradeUser(@RequestParam(name = "user_name") String userName,
-                                            @RequestBody CreditCard creditCard) {
+  public ResponseEntity<String> upgradeUser(@RequestBody UpgradeInput upgradeInput) {
     try {
-      String result = userService.upgradeUser(userName, creditCard.getCreditCardNum(),
-          creditCard.getCreditCardExp());
+      String result = userService.upgradeUser(upgradeInput.getUserName(), upgradeInput.getCreditCardNum(),
+          upgradeInput.getCreditCardExp());
       return ResponseEntity.ok(result);
     } catch (IllegalArgumentException e) {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
