@@ -49,7 +49,8 @@ public class UserServiceImpl implements UserService {
     String username = user.getUserName();
     if (!userRepository.existsById(username)) {
       userRepository.save(user);
-      FreeUser freeUser = new FreeUser(user.getUserName(), DEFAULT_SEARCH_CREDIT);
+      FreeUser freeUser = new FreeUser(user.getUserName(), user.getPassword(), user.getEmail(),
+          DEFAULT_SEARCH_CREDIT);
       freeUserRepository.save(freeUser);
       return String.format("New free user[%s] with %d search credits", username, DEFAULT_SEARCH_CREDIT);
     } else {
@@ -64,8 +65,8 @@ public class UserServiceImpl implements UserService {
     if (!userRepository.existsById(username)) {
       userRepository.save(user);
       Date vipExp = Date.valueOf(LocalDate.now().plusYears(DEFAULT_VIP_DURATION));
-      PremiumUser premiumUser = new PremiumUser(user.getUserName(), vipExp, DEFAULT_VIP_LEVEL,
-          creditCardNum, creditCardExp);
+      PremiumUser premiumUser = new PremiumUser(user.getUserName(), user.getPassword(),
+          user.getEmail(), vipExp, DEFAULT_VIP_LEVEL, creditCardNum, creditCardExp);
       premiumUserRepository.save(premiumUser);
       return String.format("New premium user[%s] valid for %d year with VIP Level %d", user,
           DEFAULT_VIP_DURATION,
@@ -99,6 +100,8 @@ public class UserServiceImpl implements UserService {
     if (!userRepository.existsById(userName)) {
       throw new IllegalArgumentException(String.format("UserName[%s] does not exist!", userName));
     }
+    Optional<User> userOptional = userRepository.findById(userName);
+    User user = userOptional.orElse(null);
     if (freeUserRepository.existsById(userName)) {
       freeUserRepository.deleteById(userName);
     }
@@ -113,10 +116,10 @@ public class UserServiceImpl implements UserService {
       return String.format("User[%s] Upgrade to VIP Level %d", userName, vipLevel);
     } else {
       Date vipExp = Date.valueOf(LocalDate.now().plusYears(DEFAULT_VIP_DURATION));
-      premiumUser = new PremiumUser(userName, vipExp, DEFAULT_VIP_LEVEL, creditCardNum,
-          creditCardExp);
+      premiumUser = new PremiumUser(user.getUserName(), user.getPassword(), user.getEmail(),
+          vipExp, DEFAULT_VIP_LEVEL, creditCardNum, creditCardExp);
       premiumUserRepository.save(premiumUser);
-      userRepository.setFixedIsPremiumFor(true, userName);
+//      userRepository.setFixedIsPremiumFor(true, userName);
       return String.format("User[%s] Upgrade to Premium User with VIP Level %d Valid for %d year",
           userName, DEFAULT_VIP_LEVEL, DEFAULT_VIP_DURATION);
     }
@@ -127,14 +130,16 @@ public class UserServiceImpl implements UserService {
     if (!userRepository.existsById(userName)) {
       throw new IllegalArgumentException(String.format("UserName[%s] does not exist!", userName));
     }
+    Optional<User> userOptional = userRepository.findById(userName);
+    User user = userOptional.orElse(null);
     if (premiumUserRepository.existsById(userName)) {
       premiumUserRepository.deleteById(userName);
     }
     if (freeUserRepository.existsById(userName)) {
       return String.format("User[%s] is already free user, cannot be downgraded anymore!", userName);
     } else {
-      freeUserRepository.save(new FreeUser(userName, DEFAULT_SEARCH_CREDIT));
-      userRepository.setFixedIsPremiumFor(false, userName);
+      freeUserRepository.save(new FreeUser(user.getUserName(), user.getPassword(), user.getEmail(), DEFAULT_SEARCH_CREDIT));
+//      userRepository.setFixedIsPremiumFor(false, userName);
       return String.format("User[%s] has been downgraded to free user!", userName);
     }
   }

@@ -18,8 +18,8 @@ public class FreeUser extends User{
   public FreeUser() {
   }
 
-  public FreeUser(Integer searchCredit) {
-    super();
+  public FreeUser(String userName, String password, String email, Integer searchCredit) {
+    super(userName, password, email, false);
     this.searchCredit = searchCredit;
   }
 

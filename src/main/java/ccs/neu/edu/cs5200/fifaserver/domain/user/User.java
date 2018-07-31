@@ -27,6 +27,13 @@ public class User {
   public User() {
   }
 
+  public User(String userName, String password, String email, Boolean isPremium) {
+    this.userName = userName;
+    this.password = password;
+    this.email = email;
+    this.isPremium = isPremium;
+  }
+
   public String getUserName() {
     return userName;
   }
