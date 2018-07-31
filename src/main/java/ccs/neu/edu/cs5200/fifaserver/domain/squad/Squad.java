@@ -15,7 +15,7 @@ public class Squad {
   @Column(name = "squad_id")
   private Long squadId;
 
-  @Column(nullable = false, name = "squad_name")
+  @Column(nullable = false, name = "squadname")
   private String squadName;
 
   @Column(nullable = false, name = "formation_name")

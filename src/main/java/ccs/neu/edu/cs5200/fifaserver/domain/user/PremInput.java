@@ -1,12 +1,16 @@
-package ccs.neu.edu.cs5200.fifaserver.domain.player;
+package ccs.neu.edu.cs5200.fifaserver.domain.user;
 
 import java.sql.Date;
 
-public class CreditCard {
+public class PremInput extends User {
   private Long creditCardNum;
   private Date creditCardExp;
 
-  public CreditCard(Long creditCardNum, Date creditCardExp) {
+  public PremInput() {
+  }
+
+  public PremInput(String userName, String password, String email, Boolean isPremium, Long creditCardNum, Date creditCardExp) {
+    super(userName, password, email, isPremium);
     this.creditCardNum = creditCardNum;
     this.creditCardExp = creditCardExp;
   }
@@ -25,5 +29,9 @@ public class CreditCard {
 
   public void setCreditCardExp(Date creditCardExp) {
     this.creditCardExp = creditCardExp;
+  }
+
+  public User buildUser() {
+    return new User(this.getUserName(), this.getPassword(), this.getEmail(), this.getIsPremium());
   }
 }

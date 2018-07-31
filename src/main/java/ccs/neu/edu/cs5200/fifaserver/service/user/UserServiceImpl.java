@@ -48,7 +48,6 @@ public class UserServiceImpl implements UserService {
   public String createFreeUser(User user) throws IllegalArgumentException {
     String username = user.getUserName();
     if (!userRepository.existsById(username)) {
-      userRepository.save(user);
       FreeUser freeUser = new FreeUser(user.getUserName(), user.getPassword(), user.getEmail(),
           DEFAULT_SEARCH_CREDIT);
       freeUserRepository.save(freeUser);
@@ -63,12 +62,11 @@ public class UserServiceImpl implements UserService {
       throws IllegalArgumentException {
     String username = user.getUserName();
     if (!userRepository.existsById(username)) {
-      userRepository.save(user);
       Date vipExp = Date.valueOf(LocalDate.now().plusYears(DEFAULT_VIP_DURATION));
       PremiumUser premiumUser = new PremiumUser(user.getUserName(), user.getPassword(),
           user.getEmail(), vipExp, DEFAULT_VIP_LEVEL, creditCardNum, creditCardExp);
       premiumUserRepository.save(premiumUser);
-      return String.format("New premium user[%s] valid for %d year with VIP Level %d", user,
+      return String.format("New premium user[%s] valid for %d year with VIP Level %d", user.getUserName(),
           DEFAULT_VIP_DURATION,
           DEFAULT_VIP_LEVEL);
     } else {

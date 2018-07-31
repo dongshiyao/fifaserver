@@ -12,7 +12,7 @@ public class Formation {
   @Column(nullable = false, name = "formation_name")
   private String formationName;
 
-  @Column(nullable = false, name = "formation_photo")
+  @Column(nullable = false, name = "formationphoto")
   private String formationPhoto;
 
   @Column(nullable = false, name = "pos1")

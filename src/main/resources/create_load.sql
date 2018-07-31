@@ -18,41 +18,41 @@ DROP TABLE IF EXISTS User;
 
 
 CREATE TABLE User (
-  user_name VARCHAR(255),
+  username VARCHAR(255),
   password VARCHAR(255) NOT NULL,
   email VARCHAR(255),
-  is_premium BOOLEAN NOT NULL DEFAULT FALSE,
-  CONSTRAINT pk_User_UserName PRIMARY KEY (user_name)
+  ispremium BOOLEAN NOT NULL DEFAULT FALSE,
+  CONSTRAINT pk_User_UserName PRIMARY KEY (username)
 );
 
 CREATE TABLE Free (
-  user_name VARCHAR(255),
-  search_credit INT DEFAULT 20,
+  username VARCHAR(255),
+  searchcredit INT DEFAULT 20,
   CONSTRAINT pk_Free_UserName
-    PRIMARY KEY (user_name),
+    PRIMARY KEY (username),
   CONSTRAINT fk_Free_UserName
-    FOREIGN KEY (user_name)
-    REFERENCES User(user_name)
+    FOREIGN KEY (username)
+    REFERENCES User(username)
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Premium (
-  user_name VARCHAR(255),
-  vip_exp DATE NOT NULL,
-  vip_level INT,
-  credit_card_num BIGINT,
-  credit_card_exp DATE NOT NULL,
+  username VARCHAR(255),
+  vipexp DATE NOT NULL,
+  viplevel INT,
+  creditcardnum BIGINT,
+  creditcardexp DATE NOT NULL,
   CONSTRAINT pk_Premium_UserName
-    PRIMARY KEY (user_name),
+    PRIMARY KEY (username),
   CONSTRAINT fk_Premium_UserName
-    FOREIGN KEY (user_name)
-    REFERENCES User(user_name)
+    FOREIGN KEY (username)
+    REFERENCES User(username)
     ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE Formation (
   formation_name VARCHAR(255),  
-  formation_photo VARCHAR(255),
+  formationphoto VARCHAR(255),
   pos1 ENUM('RW','RF','RM','RB','ST','CF','CAM','CM','CDM','CB','LW','LM','LB','LF','GK'),
   pos2 ENUM('RW','RF','RM','RB','ST','CF','CAM','CM','CDM','CB','LW','LM','LB','LF','GK'),
   pos3 ENUM('RW','RF','RM','RB','ST','CF','CAM','CM','CDM','CB','LW','LM','LB','LF','GK'),
@@ -69,7 +69,7 @@ CREATE TABLE Formation (
  
  CREATE TABLE Squad (
   squad_id INT AUTO_INCREMENT,
-  squad_name VARCHAR(255),
+  squadname VARCHAR(255),
   formation_name VARCHAR(255),
   chemisty INT,
   rating INT,
@@ -161,11 +161,11 @@ CREATE TABLE NonGKStat (
 
 
 CREATE TABLE UserSquadJunction (
-  user_name VARCHAR(255),
+  username VARCHAR(255),
   squad_id INT,
-  CONSTRAINT pk_User_Squad PRIMARY KEY (user_name, squad_id),
-  CONSTRAINT fk_UserSquad_User FOREIGN KEY (user_name) 
-    REFERENCES User (user_name),
+  CONSTRAINT pk_User_Squad PRIMARY KEY (username, squad_id),
+  CONSTRAINT fk_UserSquad_User FOREIGN KEY (username)
+    REFERENCES User (username),
   CONSTRAINT fk_UseSquad_Squad  FOREIGN KEY (squad_id)
   REFERENCES Squad (squad_id)
 );
