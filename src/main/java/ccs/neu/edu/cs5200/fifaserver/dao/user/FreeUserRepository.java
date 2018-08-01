@@ -11,5 +11,4 @@ public interface FreeUserRepository extends CrudRepository<FreeUser, String> {
   @Query("update FreeUser u set u.searchCredit = ?1 where u.userName = ?2")
   int setFixedSearchCredit(Integer searchCredit, String userName);
 
-
 }

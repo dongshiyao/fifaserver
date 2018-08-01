@@ -2,15 +2,11 @@ package ccs.neu.edu.cs5200.fifaserver.domain.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Free")
 public class FreeUser extends User{
-//  @Id
-//  @Column(name = "user_name")
-//  private String userName;
 
   @Column(nullable = false, name = "searchcredit")
   private Integer searchCredit;

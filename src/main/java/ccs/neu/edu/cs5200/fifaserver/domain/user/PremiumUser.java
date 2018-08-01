@@ -4,15 +4,11 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Premium")
 public class PremiumUser extends User {
-//  @Id
-//  @Column(name = "user_name")
-//  private String userName;
 
   @Column(nullable = false, name = "vipexp")
   private Date vipExp;
