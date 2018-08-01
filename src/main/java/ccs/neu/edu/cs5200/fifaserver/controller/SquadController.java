@@ -28,7 +28,10 @@ public class SquadController {
   @RequestMapping(method = RequestMethod.POST, value = "/addPlayerToSquad")
   public ResponseEntity<String> addPlayerToSquad(@RequestBody SquadPlayerJunction squadPlayerJunction) {
     try {
+      Long squadId = squadPlayerJunction.getSquadId();
       squadService.addPlayerToSquad(squadPlayerJunction);
+      squadService.calculateSquadRating(squadId);
+      squadService.calculateChemistry(squadId);
       return ResponseEntity.ok("Player has been successfully added!");
     } catch (IllegalArgumentException e) {
       return ResponseEntity.status((HttpStatus.BAD_REQUEST)).body("Duplicate Player in Squad!");
@@ -43,7 +46,10 @@ public class SquadController {
   @RequestMapping(method = RequestMethod.DELETE, value = "/removePlayerFromSquad")
   public ResponseEntity<String> removePlayerFromSquad(@RequestBody SquadPlayerJunction squadPlayerJunction) {
     try {
+      Long squadId = squadPlayerJunction.getSquadId();
       squadService.removePlayerFromSquad(squadPlayerJunction);
+      squadService.calculateSquadRating(squadId);
+      squadService.calculateChemistry(squadId);
       return ResponseEntity.ok("Player has been successfully removed from squad!");
     } catch (IllegalArgumentException e) {
       return ResponseEntity.status((HttpStatus.BAD_REQUEST)).body(e.getMessage());
@@ -92,13 +98,13 @@ public class SquadController {
     return squadService.displaySquadByUserName(userName);
   }
 
-  @RequestMapping(method = RequestMethod.GET, value = "/getSquadRating")
-  public Integer getSquadRating(@RequestParam(name = "squad_id") Long squadId) {
-    return squadService.calculateSquadRating(squadId);
-  }
-
-  @RequestMapping(method = RequestMethod.GET, value = "/getSquadChemistry")
-  public Integer getSquadChemistry(@RequestParam(name = "squad_id") Long squadId) {
-    return squadService.calculateChemistry(squadId);
-  }
+//  @RequestMapping(method = RequestMethod.GET, value = "/getSquadRating")
+//  public Integer getSquadRating(@RequestParam(name = "squad_id") Long squadId) {
+//    return squadService.calculateSquadRating(squadId);
+//  }
+//
+//  @RequestMapping(method = RequestMethod.GET, value = "/getSquadChemistry")
+//  public Integer getSquadChemistry(@RequestParam(name = "squad_id") Long squadId) {
+//    return squadService.calculateChemistry(squadId);
+//  }
 }
