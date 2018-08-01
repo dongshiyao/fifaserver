@@ -76,14 +76,14 @@ public class SquadController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/createSquad")
-  public ResponseEntity<String> createSquad(@RequestParam(name = "user_name") String userName,
+  public ResponseEntity<Squad> createSquad(@RequestParam(name = "user_name") String userName,
                                             @RequestParam(name = "squad_name") String squadName,
                                             @RequestParam(name = "formation_name") String formationName) {
     try {
-      squadService.createSquad(userName, squadName, formationName);
-      return ResponseEntity.ok(String.format("Successfully create squad[%s] for user[%s] !", squadName, userName));
+      Squad squad = squadService.createSquad(userName, squadName, formationName);
+      return ResponseEntity.ok(squad);
     } catch (IllegalArgumentException e) {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
     }
   }
 
