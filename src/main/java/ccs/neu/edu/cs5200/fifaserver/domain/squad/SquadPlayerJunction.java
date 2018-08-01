@@ -2,12 +2,14 @@ package ccs.neu.edu.cs5200.fifaserver.domain.squad;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "SquadPlayerJunction")
+@Table(name = "squad_player_junction")
 @IdClass(value = SquadPlayerKey.class)
 public class SquadPlayerJunction {
   @Id
@@ -19,6 +21,7 @@ public class SquadPlayerJunction {
   private Long playerId;
 
   @Column(nullable = false, name = "pos_number")
+  @Enumerated(EnumType.STRING)
   private PosNum posNumber;
 
   public SquadPlayerJunction() {

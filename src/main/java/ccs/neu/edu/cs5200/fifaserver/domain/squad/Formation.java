@@ -2,6 +2,8 @@ package ccs.neu.edu.cs5200.fifaserver.domain.squad;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -16,36 +18,47 @@ public class Formation {
   private String formationPhoto;
 
   @Column(nullable = false, name = "pos1")
+  @Enumerated(EnumType.STRING)
   private Position pos1;
 
   @Column(nullable = false, name = "pos2")
+  @Enumerated(EnumType.STRING)
   private Position pos2;
 
   @Column(nullable = false, name = "pos3")
+  @Enumerated(EnumType.STRING)
   private Position pos3;
 
   @Column(nullable = false, name = "pos4")
+  @Enumerated(EnumType.STRING)
   private Position pos4;
 
   @Column(nullable = false, name = "pos5")
+  @Enumerated(EnumType.STRING)
   private Position pos5;
 
   @Column(nullable = false, name = "pos6")
+  @Enumerated(EnumType.STRING)
   private Position pos6;
 
   @Column(nullable = false, name = "pos7")
+  @Enumerated(EnumType.STRING)
   private Position pos7;
 
   @Column(nullable = false, name = "pos8")
+  @Enumerated(EnumType.STRING)
   private Position pos8;
 
   @Column(nullable = false, name = "pos9")
+  @Enumerated(EnumType.STRING)
   private Position pos9;
 
   @Column(nullable = false, name = "pos10")
+  @Enumerated(EnumType.STRING)
   private Position pos10;
 
   @Column(nullable = false, name = "pos11")
+  @Enumerated(EnumType.STRING)
   private Position pos11;
 
   public Formation() {

@@ -26,4 +26,9 @@ public class FormationServiceImpl implements FormationService {
                         .map((Formation::getFormationName))
                         .collect(Collectors.toList());
   }
+
+  @Override
+  public Formation createFormation(Formation formation) {
+    return formationRepository.save(formation);
+  }
 }

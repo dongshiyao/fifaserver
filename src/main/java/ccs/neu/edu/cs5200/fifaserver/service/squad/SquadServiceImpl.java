@@ -70,7 +70,7 @@ public class SquadServiceImpl implements SquadService {
 
   @Override
   public String renameSquad(Long squadId, String newName) {
-    squadRepository.setFixedSquadNameFor(squadId, newName);
+    squadRepository.setFixedSquadNameFor(newName, squadId);
     return newName;
   }
 
@@ -102,7 +102,9 @@ public class SquadServiceImpl implements SquadService {
         total = total + playerOptional.get().getOverall();
       }
     }
-    return total / ELEVEN;
+    Integer rating = total / ELEVEN;
+    squadRepository.setFixedSquadRatingFor(rating, squadId);
+    return rating;
   }
 
   public Integer calculateChemistry(Long squadId) {
@@ -120,7 +122,9 @@ public class SquadServiceImpl implements SquadService {
         }
       }
     }
-    return total * ONE_HUNDRED / ELEVEN;
+    Integer chemistry = total * ONE_HUNDRED / ELEVEN;
+    squadRepository.setFixedSquadChemistryFor(chemistry, squadId);
+    return chemistry;
   }
 
   private Integer comparePosition(Formation formation, PosNum posNum, Position position) {

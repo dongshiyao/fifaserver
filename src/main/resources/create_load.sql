@@ -2,14 +2,14 @@
 CREATE SCHEMA IF NOT EXISTS ProjectFIFA;
 USE ProjectFIFA;
 
-DROP TABLE IF EXISTS UserSquadJunction;
-DROP TABLE IF EXISTS SquadPlayerJunction;
+DROP TABLE IF EXISTS user_squad_junction;
+DROP TABLE IF EXISTS squad_player_junction;
 DROP TABLE IF EXISTS NonGKStat;
 DROP TABLE IF EXISTS GKStat;
 DROP TABLE IF EXISTS Player;
 -- DROP TABLE IF EXISTS ClubLogo;
 -- DROP TABLE IF EXISTS NationFlag;
-DROP TABLE IF EXISTS LeagueLogo;
+-- DROP TABLE IF EXISTS LeagueLogo;
 DROP TABLE IF EXISTS Squad;
 DROP TABLE IF EXISTS Formation;
 DROP TABLE IF EXISTS Free;
@@ -71,7 +71,7 @@ CREATE TABLE Formation (
   squad_id INT AUTO_INCREMENT,
   squadname VARCHAR(255),
   formation_name VARCHAR(255),
-  chemisty INT,
+  chemistry INT,
   rating INT,
   CONSTRAINT pk_Squad_SquadID PRIMARY KEY(squad_id),
   CONSTRAINT fk_Squad_FormationName 
@@ -160,7 +160,7 @@ CREATE TABLE NonGKStat (
 );
 
 
-CREATE TABLE UserSquadJunction (
+CREATE TABLE user_squad_junction (
   username VARCHAR(255),
   squad_id INT,
   CONSTRAINT pk_User_Squad PRIMARY KEY (username, squad_id),
@@ -170,7 +170,7 @@ CREATE TABLE UserSquadJunction (
   REFERENCES Squad (squad_id)
 );
 
-CREATE TABLE SquadPlayerJunction (
+CREATE TABLE squad_player_junction (
   squad_id INT,
   player_id BIGINT,
   pos_number ENUM('ONE','TWO','THREE','FOUR','FIVE','SIX','SEVEN','EIGHT','NINE','TEN','ELEVEN'),

@@ -7,11 +7,11 @@ import javax.persistence.IdClass;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "UserSquadJunction")
+@Table(name = "user_squad_junction")
 @IdClass(value = UserSquadKey.class)
 public class UserSquadJunction {
   @Id
-  @Column(name = "user_name")
+  @Column(name = "username")
   private String userName;
 
   @Id

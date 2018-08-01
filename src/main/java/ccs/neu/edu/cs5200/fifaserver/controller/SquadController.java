@@ -14,18 +14,15 @@ import java.util.List;
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.Squad;
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.SquadPlayerJunction;
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.UserSquadJunction;
-import ccs.neu.edu.cs5200.fifaserver.service.squad.FormationService;
 import ccs.neu.edu.cs5200.fifaserver.service.squad.SquadService;
 
 @RestController
 @RequestMapping("/squad")
 public class SquadController {
   private final SquadService squadService;
-  private final FormationService formationService;
 
-  public SquadController(SquadService squadService, FormationService formationService) {
+  public SquadController(SquadService squadService) {
     this.squadService = squadService;
-    this.formationService = formationService;
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/addPlayerToSquad")
@@ -93,11 +90,6 @@ public class SquadController {
   @RequestMapping(method = RequestMethod.GET, value = "/displaySquadByUserName")
   public List<Squad> displaySquadByUserName(@RequestParam(name = "user_name") String userName) {
     return squadService.displaySquadByUserName(userName);
-  }
-
-  @RequestMapping(method = RequestMethod.GET, value = "/displayAllFormations")
-  public List<String> displayAllFormations() {
-    return formationService.displayAllFormationName();
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/getSquadRating")

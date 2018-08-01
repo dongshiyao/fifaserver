@@ -30,11 +30,12 @@ public class UserController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/userLogin")
-  public ResponseEntity<String> userLogin(@RequestBody LoginPair loginPair) {
-    if (userService.userLogin(loginPair)) {
-      return ResponseEntity.ok("Login Successfully!");
+  public ResponseEntity<User> userLogin(@RequestBody LoginPair loginPair) {
+    User user = userService.userLogin(loginPair);
+    if (user != null) {
+      return ResponseEntity.ok(user);
     } else {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid username or password!");
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user);
     }
   }
 

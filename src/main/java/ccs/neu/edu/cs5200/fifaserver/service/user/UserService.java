@@ -14,7 +14,7 @@ public interface UserService {
    * @param loginPair the login credential
    * @return true if login successfully, false otherwise
    */
-  Boolean userLogin(LoginPair loginPair);
+  User userLogin(LoginPair loginPair);
 
   /**
    * Create a new free user.
