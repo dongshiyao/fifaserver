@@ -30,13 +30,17 @@ public class UserController {
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/userLogin")
-  public ResponseEntity<User> userLogin(@RequestBody LoginPair loginPair) {
-    User user = userService.userLogin(loginPair);
-    if (user != null) {
-      return ResponseEntity.ok(user);
+  public ResponseEntity<String> userLogin(@RequestBody LoginPair loginPair) {
+    if (userService.userLogin(loginPair)) {
+      return ResponseEntity.ok("Login Successfully!");
     } else {
-      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(user);
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid username or password!");
     }
+  }
+
+  @RequestMapping(method = RequestMethod.GET, value = "/findUserByUserName")
+  public User findUserByUserName(@RequestParam(name = "user_name") String userName) {
+    return userService.findUserByUserName(userName);
   }
 
   @RequestMapping(method = RequestMethod.POST, value = "/createFreeUser")

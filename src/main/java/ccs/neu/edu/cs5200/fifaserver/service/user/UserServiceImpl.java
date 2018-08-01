@@ -37,15 +37,11 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public User userLogin(LoginPair loginPair) {
+  public Boolean userLogin(LoginPair loginPair) {
     String userName = loginPair.getUserName();
     String password = loginPair.getPassword();
     Optional<User> userOptional = userRepository.findById(userName);
-    if (userOptional.isPresent() && userOptional.get().getPassword().equals(password)) {
-      return userOptional.get();
-    } else {
-      return null;
-    }
+    return userOptional.isPresent() && userOptional.get().getPassword().equals(password);
   }
 
   @Override
