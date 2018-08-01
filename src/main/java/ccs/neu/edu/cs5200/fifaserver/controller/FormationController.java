@@ -2,6 +2,7 @@ package ccs.neu.edu.cs5200.fifaserver.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import ccs.neu.edu.cs5200.fifaserver.service.squad.FormationService;
 
 @RestController
 @RequestMapping("/formation")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FormationController {
   private final FormationService formationService;
 

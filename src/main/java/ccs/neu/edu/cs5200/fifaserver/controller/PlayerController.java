@@ -1,6 +1,7 @@
 package ccs.neu.edu.cs5200.fifaserver.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +15,7 @@ import ccs.neu.edu.cs5200.fifaserver.service.player.PlayerService;
 
 @RestController
 @RequestMapping("/players")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PlayerController {
   private static final String NULL_INPUT = "NULL_INPUT";
   private final PlayerService playerService;

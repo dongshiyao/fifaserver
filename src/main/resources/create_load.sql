@@ -266,3 +266,6 @@ LOAD DATA INFILE '/tmp/nongk.csv'
   		  lm=@lm,
   		  lb=@lb,
   		  lf=@lf;
+          
+INSERT INTO Formation(formation_name,formationphoto,pos1,pos2,pos3,pos4,pos5,pos6,pos7,pos8,pos9,pos10,pos11)
+  VALUES("4-4-1-1","www.fakephoto.com","ST","LM","CM","CF","CM","RM","LB","CB","CB","RB","GK");
