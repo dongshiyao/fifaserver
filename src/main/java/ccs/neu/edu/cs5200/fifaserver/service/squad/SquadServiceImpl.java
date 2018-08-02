@@ -18,6 +18,7 @@ import ccs.neu.edu.cs5200.fifaserver.domain.squad.PosNum;
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.Position;
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.Squad;
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.SquadPlayerJunction;
+import ccs.neu.edu.cs5200.fifaserver.domain.squad.SquadPlayerKey;
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.UserSquadJunction;
 
 @Component("squadService")
@@ -42,6 +43,9 @@ public class SquadServiceImpl implements SquadService {
 
   @Override
   public SquadPlayerJunction addPlayerToSquad(SquadPlayerJunction squadPlayerJunction) {
+    if (squadPlayerJunctionRepository.existsById(new SquadPlayerKey(squadPlayerJunction.getSquadId(), squadPlayerJunction.getPlayerId()))) {
+      throw new IllegalArgumentException("Duplicate Player in Squad!");
+    }
     return squadPlayerJunctionRepository.save(squadPlayerJunction);
   }
 

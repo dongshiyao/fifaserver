@@ -8,8 +8,6 @@ import ccs.neu.edu.cs5200.fifaserver.domain.player.SearchCriteria;
 public interface PlayerDao {
   List<Player> searchByCriteria(SearchCriteria searchCriteria);
 
-  List<Player> searchByPlayerName(String playerName);
-
   List<String> searchNationByFirstLetterInRange(Character start, Character end);
 
   List<String> searchLeagueByFirstLetterInRange(Character start, Character end);

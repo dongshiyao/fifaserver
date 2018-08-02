@@ -36,7 +36,7 @@ public class SquadController {
       squadService.calculateChemistry(squadId);
       return ResponseEntity.ok("Player has been successfully added!");
     } catch (IllegalArgumentException e) {
-      return ResponseEntity.status((HttpStatus.BAD_REQUEST)).body("Duplicate Player in Squad!");
+      return ResponseEntity.status((HttpStatus.BAD_REQUEST)).body(e.getMessage());
     }
   }
 

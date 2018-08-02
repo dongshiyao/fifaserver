@@ -27,15 +27,14 @@ public class PlayerServiceImpl implements PlayerService {
     this.playerRepository = playerRepository;
   }
 
-  @Override
-  public List<Player> searchByPlayerName(String playerName) {
-    return playerDao.searchByPlayerName(playerName);
-  }
 
   @Override
-  public List<Player> searchByPlayerCriteria(String nation, String league, String club,
+  public List<Player> searchByPlayerCriteria(String playerName, String nation, String league, String club,
                                              String position, String sortCriteria) {
     SearchCriteria searchCriteria = new SearchCriteria();
+    if (!playerName.equals(NULL_INPUT)) {
+      searchCriteria.setPlayerName(playerName);
+    }
     if (!nation.equals(NULL_INPUT)) {
       searchCriteria.setNation(nation);
     }

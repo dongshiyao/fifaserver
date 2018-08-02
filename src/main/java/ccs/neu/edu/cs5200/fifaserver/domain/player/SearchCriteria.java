@@ -3,6 +3,7 @@ package ccs.neu.edu.cs5200.fifaserver.domain.player;
 import ccs.neu.edu.cs5200.fifaserver.domain.squad.Position;
 
 public class SearchCriteria {
+  private String playerName;
   private String nation;
   private String league;
   private String club;
@@ -10,6 +11,14 @@ public class SearchCriteria {
   private SortCriteria sortCriteria;
 
   public SearchCriteria() {
+  }
+
+  public String getPlayerName() {
+    return playerName;
+  }
+
+  public void setPlayerName(String playerName) {
+    this.playerName = playerName;
   }
 
   public String getNation() {

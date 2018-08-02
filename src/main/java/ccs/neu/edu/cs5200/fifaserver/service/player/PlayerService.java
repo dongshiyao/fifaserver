@@ -6,16 +6,9 @@ import ccs.neu.edu.cs5200.fifaserver.domain.player.Player;
 
 public interface PlayerService {
   /**
-   * Search all players whose name include input string.
-   *
-   * @param playerName the input string to search
-   * @return list of players
-   */
-  List<Player> searchByPlayerName(String playerName);
-
-  /**
    * Search all players who met the criteria.
    *
+   * @param playerName the playerName
    * @param nation the nationality of player
    * @param league the league of player
    * @param club the club of player
@@ -23,7 +16,7 @@ public interface PlayerService {
    * @param sortCriteria the sort criteria of player
    * @return list of players
    */
-  List<Player> searchByPlayerCriteria(String nation, String league, String club, String position, String sortCriteria);
+  List<Player> searchByPlayerCriteria(String playerName, String nation, String league, String club, String position, String sortCriteria);
 
   /**
    * Retrieve all nations with name's first letter in range.

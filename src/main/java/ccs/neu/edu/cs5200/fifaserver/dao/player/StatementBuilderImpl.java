@@ -7,10 +7,10 @@ import ccs.neu.edu.cs5200.fifaserver.domain.player.SearchCriteria;
 @Component("statementBuilder")
 public class StatementBuilderImpl implements StatementBuilder {
   private static final String START = "SELECT c FROM Player c";
-  private static final String SQL_SEARCH_NAME = "SELECT c FROM Player c WHERE LOWER(player_name) LIKE '%%%s%%' ORDER BY Overall DESC";
   private static final String SQL_SEARCH_NATION_START_WITH = "SELECT nation FROM Player WHERE %s GROUP BY nation ORDER BY nation";
   private static final String SQL_SEARCH_LEAGUE_START_WITH = "SELECT league FROM Player WHERE %s GROUP BY league ORDER BY league";
   private static final String SQL_SEARCH_CLUB_BY_LEAGUE = "SELECT club FROM Player WHERE league = '%s' GROUP BY club ORDER BY club";
+  private static final String CLAUSE_PLAYER_NAME = "LOWER(player_name) LIKE '%%%s%%'";
   private static final String CLAUSE_NATION_LIKE = "LOWER(nation) LIKE '%c%%'";
   private static final String CLAUSE_LEAGUE_LIKE = "LOWER(league) LIKE '%c%%'";
   private static final String CLAUSE_NATION = "nation = '%s'";
@@ -26,11 +26,6 @@ public class StatementBuilderImpl implements StatementBuilder {
   private static final Character CHAR_Z = 'z';
 
   @Override
-  public String buildStatementByPlayerName(String playerName) {
-    return String.format(SQL_SEARCH_NAME, playerName.toLowerCase());
-  }
-
-  @Override
   public String buildStatementByCriteria(SearchCriteria searchCriteria) {
     String result = START;
     Boolean flag = false;
@@ -42,7 +37,8 @@ public class StatementBuilderImpl implements StatementBuilder {
       if (flag) {
         result = result + SP + AND + SP + String.format(CLAUSE_LEAGUE, searchCriteria.getLeague());
       } else {
-        result = result + SP + WHERE + SP + String.format(CLAUSE_LEAGUE, searchCriteria.getLeague());
+        result =
+            result + SP + WHERE + SP + String.format(CLAUSE_LEAGUE, searchCriteria.getLeague());
       }
       flag = true;
     }
@@ -56,9 +52,20 @@ public class StatementBuilderImpl implements StatementBuilder {
     }
     if (searchCriteria.getPosition() != null) {
       if (flag) {
-        result = result + SP + AND + SP + String.format(CLAUSE_POSITION, searchCriteria.getPosition().name());
+        result = result + SP + AND + SP
+            + String.format(CLAUSE_POSITION, searchCriteria.getPosition().name());
       } else {
-        result = result + SP + WHERE + SP + String.format(CLAUSE_POSITION, searchCriteria.getPosition().name());
+        result = result + SP + WHERE + SP
+            + String.format(CLAUSE_POSITION, searchCriteria.getPosition().name());
+      }
+    }
+    if (searchCriteria.getPlayerName() != null) {
+      if (flag) {
+        result = result + SP + AND + SP
+            + String.format(CLAUSE_PLAYER_NAME, searchCriteria.getPlayerName());
+      } else {
+        result = result + SP + WHERE + SP
+            + String.format(CLAUSE_PLAYER_NAME, searchCriteria.getPlayerName());
       }
     }
     if (searchCriteria.getSortCriteria() != null) {
@@ -71,7 +78,7 @@ public class StatementBuilderImpl implements StatementBuilder {
   public String buildStatementNationByFirstLetterInRange(Character start, Character end) {
     start = Character.toLowerCase(start);
     end = Character.toLowerCase(end);
-    if (Character.isLetter(start)&& Character.isLetter(end) && start < end) {
+    if (Character.isLetter(start) && Character.isLetter(end) && start < end) {
       return String.format(SQL_SEARCH_NATION_START_WITH, helperBuildNationLike(start, end));
     } else {
       return String.format(SQL_SEARCH_NATION_START_WITH, helperBuildNationLike(CHAR_A, CHAR_Z));
@@ -82,7 +89,7 @@ public class StatementBuilderImpl implements StatementBuilder {
   public String buildStatementLeagueByFirstLetterInRange(Character start, Character end) {
     start = Character.toLowerCase(start);
     end = Character.toLowerCase(end);
-    if (Character.isLetter(start)&& Character.isLetter(end) && start < end) {
+    if (Character.isLetter(start) && Character.isLetter(end) && start < end) {
       return String.format(SQL_SEARCH_LEAGUE_START_WITH, helperBuildLeagueLike(start, end));
     } else {
       return String.format(SQL_SEARCH_LEAGUE_START_WITH, helperBuildLeagueLike(CHAR_A, CHAR_Z));

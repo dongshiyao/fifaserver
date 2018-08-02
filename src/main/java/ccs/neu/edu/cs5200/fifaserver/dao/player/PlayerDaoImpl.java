@@ -28,12 +28,6 @@ public class PlayerDaoImpl implements PlayerDao {
   }
 
   @Override
-  public List<Player> searchByPlayerName(String playerName) {
-    return entityManager.createQuery(statementBuilder.buildStatementByPlayerName(playerName),
-        Player.class).getResultList();
-  }
-
-  @Override
   public List<String> searchNationByFirstLetterInRange(Character start, Character end) {
     return entityManager.createQuery(statementBuilder.buildStatementNationByFirstLetterInRange(start, end),
         String.class).getResultList();

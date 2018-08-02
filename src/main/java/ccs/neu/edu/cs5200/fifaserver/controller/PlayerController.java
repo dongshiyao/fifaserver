@@ -34,11 +34,6 @@ public class PlayerController {
     }
   }
 
-  @RequestMapping(method = RequestMethod.GET, value = "/searchPlayerByName")
-  public List<Player> searchPlayerByName(@RequestParam(name = "input_player_name") String playerName) {
-    return playerService.searchByPlayerName(playerName);
-  }
-
   @RequestMapping(method = RequestMethod.GET, value = "/displayNationByFirstLetterInRange")
   public List<String> displayNationByFirstLetterInRange(@RequestParam(name = "start_letter", defaultValue = "a") Character startLetter,
                                                        @RequestParam(name = "end_letter", defaultValue = "z") Character endLetter) {
@@ -57,12 +52,13 @@ public class PlayerController {
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/searchPlayerByCriteria")
-  public List<Player> searchPlayerByCriteria(@RequestParam(name = "nation", defaultValue = NULL_INPUT) String nation,
+  public List<Player> searchPlayerByCriteria(@RequestParam(name = "input_player_name") String playerName,
+                                             @RequestParam(name = "nation", defaultValue = NULL_INPUT) String nation,
                                              @RequestParam(name = "league", defaultValue = NULL_INPUT) String league,
                                              @RequestParam(name = "club", defaultValue = NULL_INPUT) String club,
                                              @RequestParam(name = "position", defaultValue = NULL_INPUT) String position,
                                              @RequestParam(name = "sortCriteria", defaultValue = NULL_INPUT) String sortCriteria) {
-    return playerService.searchByPlayerCriteria(nation, league, club, position, sortCriteria);
+    return playerService.searchByPlayerCriteria(playerName, nation, league, club, position, sortCriteria);
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/searchPlayerById")
