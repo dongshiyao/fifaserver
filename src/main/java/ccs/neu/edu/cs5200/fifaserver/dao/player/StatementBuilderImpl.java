@@ -58,6 +58,7 @@ public class StatementBuilderImpl implements StatementBuilder {
         result = result + SP + WHERE + SP
             + String.format(CLAUSE_POSITION, searchCriteria.getPosition().name());
       }
+      flag = true;
     }
     if (searchCriteria.getPlayerName() != null) {
       if (flag) {
