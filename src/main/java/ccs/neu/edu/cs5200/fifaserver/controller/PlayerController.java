@@ -18,7 +18,6 @@ import ccs.neu.edu.cs5200.fifaserver.service.player.PlayerService;
 @CrossOrigin(origins = "http://localhost:3000")
 public class PlayerController {
   private static final String NULL_INPUT = "NULL_INPUT";
-  private static final String EMPTY = "";
   private final PlayerService playerService;
 
   @Autowired
@@ -53,7 +52,7 @@ public class PlayerController {
   }
 
   @RequestMapping(method = RequestMethod.GET, value = "/searchPlayerByCriteria")
-  public List<Player> searchPlayerByCriteria(@RequestParam(name = "input_player_name", defaultValue = EMPTY) String playerName,
+  public List<Player> searchPlayerByCriteria(@RequestParam(name = "input_player_name", defaultValue = NULL_INPUT) String playerName,
                                              @RequestParam(name = "nation", defaultValue = NULL_INPUT) String nation,
                                              @RequestParam(name = "league", defaultValue = NULL_INPUT) String league,
                                              @RequestParam(name = "club", defaultValue = NULL_INPUT) String club,
